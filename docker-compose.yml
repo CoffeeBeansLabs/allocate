@@ -1,0 +1,56 @@
+version: "3.8"
+
+networks:
+  allocate-network:
+    name: allocate-network
+    driver: bridge
+
+services:
+  db:
+    image: postgres:14.6
+    networks:
+      - allocate-network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+    env_file:
+      - apps/service/.env.db
+    healthcheck:
+      test: pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER} || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  service-app:
+    build:
+      context: ./
+      dockerfile: apps/service/Dockerfile
+    networks:
+      - allocate-network
+    volumes:
+      - static:/app/static
+    ports:
+      - "8000:8000"
+    env_file:
+      - apps/service/.env
+    depends_on:
+      db:
+        condition: service_healthy
+
+  ui-app:
+    build:
+      context: ./
+      dockerfile: apps/ui/Dockerfile
+    networks:
+      - allocate-network
+    volumes:
+      - static:/app/static
+    ports:
+      - "443:443"
+    env_file:
+      - apps/ui/.env
+
+volumes:
+  postgres_data:
+  static:

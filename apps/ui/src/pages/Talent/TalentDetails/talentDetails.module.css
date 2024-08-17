@@ -1,0 +1,182 @@
+.mainSection {
+  padding: 30px;
+}
+
+.pagePosition {
+  color: var(--color-CharlestonGreen-1);
+}
+
+.header {
+  margin: 6px 0 30px;
+}
+
+.talentName {
+  color: var(--color-CharlestonGreen-1);
+}
+
+.nonActive {
+  color: var(--color-MaximumRed);
+}
+
+.sectionTitle {
+  margin-bottom: 10px;
+  color: var(--color-CetaceanBlue);
+}
+
+.actionsBox {
+  margin-bottom: 30px;
+}
+
+.customLabel {
+  gap: 10px !important;
+}
+
+.iconImage {
+  width: 18px;
+  height: 18px;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.chevronIcon {
+  cursor: pointer;
+}
+
+.rotate180deg {
+  transform: rotateX(180deg);
+}
+
+.skillCardItems {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.skillItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+
+.industry {
+  padding: 5px 15px;
+  min-height: 80px;
+  max-height: 130px;
+}
+
+.utilizationIcon {
+  width: 30px;
+  height: 30px;
+}
+
+.showMore {
+  cursor: pointer;
+  color: var(--color-Blueberry);
+}
+
+.editIcon {
+  cursor: pointer;
+  width: 21px;
+  height: 21px;
+}
+
+.valuesContainer {
+  padding: 5px 15px;
+}
+
+.valueItem {
+  margin: 2px;
+  border-radius: 20px;
+  background-color: var(--color-BrightGray);
+  width: fit-content;
+  height: 34px;
+  padding: 5px 12px;
+  color: var(--color-GraniteGray);
+}
+
+.skillContainer {
+  height: 370px;
+  width: 100%;
+  overflow-y: auto;
+  padding-right: 25px;
+}
+
+.skill {
+  padding: 12px 10px;
+  border: 1px solid var(--color-LightSilver);
+  border-radius: 10px;
+}
+
+.inputContainer {
+  margin: 16px 0 0 16px;
+}
+
+.saveButton {
+  margin-right: 20px;
+  width: 126px;
+}
+
+.infoIcon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-CadetGrey);
+  border-radius: 50%;
+  border: 2px solid var(--color-CadetGrey);
+  text-align: center;
+  transform: scale(0.8);
+}
+
+@media screen and (max-width: 768px) {
+  .mainSection {
+    padding: 24px 16px;
+  }
+
+  .header {
+    margin: 0;
+  }
+
+  .arrowRight {
+    transform: rotate(180deg);
+  }
+
+  .inactive {
+    opacity: 0.5;
+  }
+
+  .sectionTitle {
+    display: none;
+  }
+
+  .detailRow {
+    padding: 13px 0;
+    border-bottom: 2px solid var(--color-Platinum);
+  }
+
+  .customInfoRow {
+    padding-top: 0px;
+    padding-left: 16px !important;
+  }
+
+  .email {
+    word-wrap: break-word;
+    max-width: 195px;
+    padding: 0 15px;
+  }
+
+  .skillContainer {
+    padding-right: 10px;
+  }
+
+  .inputContainer {
+    margin: 10px 10px 0 16px;
+  }
+
+  .saveButton {
+    margin-right: 10px;
+    width: 100%;
+  }
+}

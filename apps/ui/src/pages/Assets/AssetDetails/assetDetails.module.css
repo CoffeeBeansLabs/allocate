@@ -1,0 +1,82 @@
+.mainSection {
+  padding: 30px;
+}
+
+.pagePosition {
+  color: var(--color-CharlestonGreen-1);
+}
+
+.header {
+  margin: 6px 0 30px;
+}
+
+.icons {
+  cursor: pointer;
+}
+
+.customInfoRow {
+  padding-top: 16px;
+  padding-left: 5px !important;
+}
+
+.statusValue {
+  border-radius: 20px;
+  background-color: var(--color-BrightGray);
+  width: fit-content;
+  height: fit-content;
+  padding: 4px 17px;
+  color: var(--color-GraniteGray);
+  text-align: center;
+}
+
+.timeline {
+  height: 110px;
+  width: 100%;
+  overflow-x: scroll;
+  margin-bottom: 60px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.timelineBar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .mainSection {
+    padding: 24px 16px;
+  }
+
+  .sectionTitle {
+    padding-top: 30px;
+  }
+
+  .detailRow {
+    padding: 13px 0;
+    border-bottom: 2px solid var(--color-Platinum);
+    word-wrap: break-word;
+  }
+
+  .customInfoRow {
+    padding-top: 0px;
+    padding-left: 16px !important;
+  }
+
+  .timeline {
+    height: fit-content;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    flex-direction: column;
+    gap: 25px;
+    align-items: flex-start;
+  }
+
+  .timelineBar {
+    gap: 3px;
+    width: 100%;
+  }
+}

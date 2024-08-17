@@ -1,0 +1,119 @@
+.customSelectWrapper .customSelectContainer {
+  background: var(--color-White);
+  border: 1px solid var(--color-LightSilver);
+  border-radius: 10px;
+  height: auto;
+  position: relative;
+  cursor: pointer;
+}
+
+.customSelectWrapper .selectLabel {
+  font-size: 14px;
+  font-weight: 500;
+  padding-left: 4px;
+  padding-bottom: 8px;
+  display: inline-block;
+  color: var(--color-CharlestonGreen-1);
+}
+
+.customSelectWrapper .customSelectContainer.customSelect--is-disabled {
+  background: var(--color-GhostWhite);
+  color: var(--color-CadetGrey);
+  overflow: hidden;
+}
+
+.customSelectWrapper .customSelect__control {
+  border-radius: 10px;
+  border: none;
+  height: auto;
+  padding-left: 9px;
+  cursor: pointer;
+  background-color: inherit;
+}
+
+.customSelectWrapper .customSelect__single-value,
+.customSelectWrapper .customSelect__placeholder {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--color-Black);
+  margin: 0;
+}
+
+.customSelectWrapper .customSelect__indicator-separator {
+  display: none;
+}
+
+.customSelectWrapper .customSelect__dropdown-indicator {
+  color: var(--color-Black);
+}
+
+.customSelectWrapper .customSelect__value-container {
+  padding: 0;
+}
+
+.customSelectWrapper .customSelect__menu {
+  margin: 0;
+  left: 0;
+  margin-top: 1px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.15);
+  background: var(--color-White);
+  animation: fadeIn 0.75s;
+  z-index: 100;
+}
+
+.customSelectWrapper .customSelect__menu-list {
+  padding: 12px;
+  overflow: auto;
+  max-height: 332px;
+}
+
+.customSelectWrapper .customSelect__control--is-focused,
+.customSelectWrapper .customSelect__control--is-menu-open {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.customSelect__chevronIcon {
+  margin-left: auto;
+  max-width: 100%;
+}
+
+.menuOpen {
+  transform: rotateX(180deg);
+}
+
+.customSelectWrapper .customSelect__option {
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.customSelectWrapper .customSelect__option--is-focused,
+.customSelectWrapper .customSelect__option--is-focused:hover,
+.customSelectWrapper .customSelect__option--is-focused:active {
+  background: rgba(241, 88, 88, 0.05);
+}
+
+.customSelectWrapper .customSelect__option--is-selected {
+  font-weight: 500;
+  color: var(--color-SunsetOrange-2);
+  background: rgba(241, 88, 88, 0.08);
+}
+
+.customSelectWrapper.invalid .customSelectContainer {
+  border-color: var(--color-CarminePink);
+}
+
+.customSelectWrapper.invalid .selectLabel,
+.customSelectWrapper.invalid:focus
+  .selectLabel
+  .customSelectWrapper.invalid:focus-within
+  .selectLabel {
+  color: var(--color-MaximumRed);
+}
+
+.errorMessage {
+  padding-left: 12px;
+  display: inline-block;
+  color: var(--color-CarminePink);
+}

@@ -1,0 +1,106 @@
+{
+  "name": "service",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/service",
+  "targets": {
+    "serve": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "commands": ["poetry run python manage.py runserver"],
+        "cwd": "apps/service",
+        "parallel": false
+      }
+    },
+    "migrate": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry run python manage.py migrate",
+        "cwd": "apps/service"
+      }
+    },
+    "lock": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry lock --no-update",
+        "cwd": "apps/service"
+      }
+    },
+    "add": {
+      "executor": "@nxlv/python:add",
+      "options": {}
+    },
+    "update": {
+      "executor": "@nxlv/python:update",
+      "options": {}
+    },
+    "remove": {
+      "executor": "@nxlv/python:remove",
+      "options": {}
+    },
+    "build": {
+      "executor": "@nxlv/python:build",
+      "outputs": ["{workspaceRoot}/dist/apps/service"],
+      "options": {
+        "outputPath": "{workspaceRoot}/dist/apps/service",
+        "publish": false,
+        "lockedVersions": true,
+        "bundleLocalDependencies": true
+      }
+    },
+    "install": {
+      "executor": "@nxlv/python:install",
+      "options": {
+        "silent": false,
+        "args": "",
+        "cacheDir": ".cache/pypoetry",
+        "verbose": false,
+        "debug": false
+      }
+    },
+    "lint": {
+      "executor": "@nxlv/python:flake8",
+      "outputs": ["{workspaceRoot}/reports/apps/pylint.txt"],
+      "options": {
+        "outputFile": "reports/apps/pylint.txt"
+      }
+    },
+    "test": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "commands": ["poetry run coverage run manage.py test", "poetry run coverage xml"],
+        "parallel": false,
+        "cwd": "apps/service"
+      }
+    },
+    "app-init": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "commands": [
+          "poetry install",
+          "poetry run python manage.py makemigrations",
+          "poetry run python manage.py migrate",
+          "poetry run python manage.py manage_industries --create",
+          "poetry run python manage.py manage_roles --create",
+          "poetry run python manage.py manage_skills --create",
+          "poetry run python manage.py import_user_data",
+          "poetry run python manage.py import_airtable_data",
+          "poetry run python manage.py import_client_data",
+          "poetry run python manage.py import_project_data",
+          "poetry run python manage.py importing_airtable_data"
+        ],
+        "cwd": "apps/service",
+        "parallel": false
+      }
+    },
+    "manage": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry run python manage.py",
+        "cwd": "apps/service",
+        "parallel": false
+      }
+    }
+  },
+  "tags": []
+}

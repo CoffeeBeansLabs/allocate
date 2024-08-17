@@ -1,0 +1,115 @@
+.card {
+  background-color: var(--color-White);
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.pieChart {
+  grid-area: overlap;
+  align-self: center;
+  justify-self: center;
+  margin-top: -30px;
+}
+
+.pieChart canvas {
+  height: 250px !important;
+  width: 250px !important;
+}
+
+.doughnutChart {
+  grid-area: overlap;
+  align-self: center;
+  justify-self: center;
+  z-index: 10;
+}
+
+.doughnutChart canvas {
+  height: 250px !important;
+  width: 250px !important;
+  margin: auto !important;
+}
+
+.chartWrapper {
+  position: inherit;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "overlap";
+}
+
+.graphWrapper {
+  min-height: 500px;
+  max-height: 700px;
+  position: relative;
+  padding-right: 30px;
+}
+
+.scrollArrowButton {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(76, 156, 255, 0.3);
+  padding: 10px 12px;
+}
+
+.scrollArrowButton:hover {
+  opacity: 0.7;
+}
+
+.scrollBar {
+  width: 100%;
+  position: absolute;
+  bottom: 5px;
+  left: 15px;
+  right: 0;
+}
+
+.report {
+  position: relative;
+}
+
+.reportDropdown {
+  padding-top: 20px;
+  padding-bottom: 30px;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  height: fit-content;
+  width: 350px;
+  z-index: 30;
+}
+
+.reportIcon {
+  height: 45px;
+  width: 45px;
+  cursor: pointer;
+  background: var(--color-White);
+}
+
+.chartSelect {
+  width: 200px;
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    padding: 10px;
+  }
+
+  .countCardTitle {
+    display: block;
+    height: 50px;
+  }
+
+  .arrowIcon {
+    transform: scale(0.7);
+  }
+
+  .pieChart canvas {
+    height: 340px;
+  }
+
+  .graphWrapper canvas {
+    height: 600px;
+  }
+}

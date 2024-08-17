@@ -1,0 +1,42 @@
+.label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding-left: 4px;
+  padding-bottom: 8px;
+  display: inline-block;
+  font-family: var(--font-secondary);
+  color: var(--color-CharlestonGreen-1);
+}
+
+.uploadInput {
+  font-weight: 400;
+  font-size: 0.875rem;
+  font-family: var(--font-secondary);
+  margin: 0;
+  width: 112px;
+  overflow: hidden;
+}
+
+.uploadInput::file-selector-button {
+  font-weight: 500;
+  font-size: 0.875rem;
+  font-family: var(--font-secondary);
+  padding: 8px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s all;
+  background-color: var(--color-White);
+  color: var(--color-Blueberry);
+  border: 1px solid var(--color-Blueberry);
+}
+
+.previewContainer {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.imagePreview {
+  width: 150px;
+}

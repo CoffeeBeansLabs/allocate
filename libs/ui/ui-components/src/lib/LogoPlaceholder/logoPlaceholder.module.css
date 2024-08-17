@@ -1,0 +1,25 @@
+.wrapper {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  text-align: center;
+  padding: 4px 0;
+  cursor: pointer;
+}
+
+.wrapper:hover {
+  transform: scale(1.25);
+  filter: drop-shadow(0 4px 4px rgba(32, 49, 100, 0.28));
+}
+
+.light {
+  color: var(--color-Black);
+  background: var(--color-Lavender);
+  border: 2px solid var(--color-Indigo);
+}
+
+.dark {
+  color: var(--color-White);
+  background: var(--color-Indigo);
+  border: 2px solid var(--color-MetallicSilver);
+}

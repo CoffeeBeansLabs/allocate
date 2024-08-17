@@ -1,0 +1,148 @@
+.loginPageContainer {
+  height: 100vh;
+}
+
+.photoContainer {
+  width: auto;
+  position: relative;
+}
+
+.photoContainer img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: auto;
+  z-index: -1;
+  object-fit: cover;
+}
+
+.formContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 30px;
+  width: 60%;
+  height: 100%;
+  margin-left: auto;
+  background: linear-gradient(
+    270deg,
+    var(--color-White) 62.63%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.loginForm {
+  position: relative;
+  background: var(--color-White);
+  box-shadow: 0px 1px 20px rgba(32, 49, 100, 0.15);
+  border-radius: 14px;
+  padding: 70px 54px;
+  width: 440px;
+  margin-right: 80px;
+}
+
+.loginForm .icon {
+  position: absolute;
+  top: -54px;
+  right: 0;
+}
+
+.appLogo {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+}
+
+.appName {
+  font-weight: 500;
+  font-size: 2.5rem;
+  line-height: 58px;
+  font-family: var(--font-primary);
+  color: var(--color-CetaceanBlue);
+}
+
+.appDescription {
+  margin-top: 4px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--color-CharlestonGreen-2);
+}
+
+.loginBtn {
+  margin-top: 40px;
+  width: fit-content;
+  background: var(--color-White);
+  border: 1px solid var(--color-CetaceanBlue);
+  border-radius: 8px;
+  padding: 10px 17px;
+  gap: 8px;
+}
+
+.bgImageMobile,
+.pieIcon {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .formContainer {
+    width: 100%;
+    align-items: unset;
+    justify-content: center;
+    background: linear-gradient(
+      180deg,
+      var(--color-White) 60.62%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  .photoContainer {
+    position: static;
+  }
+
+  .photoContainer img {
+    width: 100%;
+    height: auto;
+    top: unset;
+    bottom: 0;
+  }
+
+  .loginBtn {
+    margin: 40px auto 0;
+  }
+
+  .bgImageDesktop,
+  .icon {
+    display: none;
+  }
+
+  .bgImageMobile,
+  .pieIcon {
+    display: block;
+  }
+
+  .pieIcon {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  .loginForm {
+    margin-top: 140px;
+    margin-right: 0;
+    box-shadow: none;
+    padding: 0;
+    text-align: center;
+    background-color: transparent;
+  }
+
+  .appLogo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    top: 60px;
+    left: 0;
+    right: 0;
+  }
+}

@@ -1,0 +1,531 @@
+.editButton {
+  padding: 12px 16px;
+}
+
+.sectionHeader {
+  height: 100%;
+  min-height: 100%;
+  margin-bottom: 30px;
+}
+
+.timelineWrapper {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  min-height: calc(100% - 140px);
+}
+
+.timelineHeader {
+  max-width: 100% !important;
+  padding: 30px 120px;
+  gap: 5px;
+  background: var(--color-GhostWhite-1);
+}
+
+.pageNavPosition {
+  padding-left: 33px;
+}
+
+.placeholderBody {
+  padding: 30px 0;
+}
+
+.placeholderImage {
+  height: 320px;
+  width: 320px;
+  margin: 30px 0;
+}
+
+.rolesPresent {
+  padding-bottom: 40px;
+}
+
+.projectName {
+  margin-bottom: 14px;
+}
+
+.actionsContainer {
+  align-items: end;
+  margin-top: 8px;
+}
+
+.positions {
+  padding-right: 13px;
+  margin-right: 13px;
+  border-right: 1px solid var(--color-Platinum);
+}
+
+.navIcon {
+  height: 24px;
+  cursor: pointer;
+}
+
+.chevronRight {
+  cursor: pointer;
+  margin-left: 8px;
+  transform: rotate(-90deg);
+}
+
+.rolesSectionWrapper {
+  min-height: 100%;
+  background: var(--color-White);
+  box-shadow: 0 4px 10px rgba(4 16 59 / 10%);
+}
+
+.roleSection {
+  display: flex;
+  height: 65px;
+  align-items: flex-start;
+  justify-content: space-between;
+  box-shadow: -2px 2px -2px rgb(4 16 59 / 10%);
+  margin-bottom: -2px;
+  margin-top: 10px;
+}
+
+.roleCard {
+  box-sizing: border-box;
+  padding: 0 10px 0 20px !important;
+  border-bottom: 2px solid var(--color-Platinum);
+}
+
+.editRoleBtnContainer {
+  position: relative;
+}
+
+.editRoleMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  width: 96px;
+}
+
+.positionItemContainer {
+  box-sizing: border-box;
+  margin-bottom: -1px;
+  border-bottom: 1px solid var(--color-Platinum);
+}
+
+.positionItemContainer:last-child {
+  border-bottom: none;
+}
+
+.positionItem {
+  height: 65px;
+  display: flex;
+  align-items: center;
+}
+
+.positionRequest {
+  height: fit-content;
+  width: fit-content;
+  padding: 0 5px;
+  border-radius: 4px;
+  color: var(--color-White);
+  background-color: var(--color-Tulip);
+}
+
+.approvalBtnContainer {
+  padding: 18px 0;
+}
+
+.timelineMonthToggle {
+  display: flex;
+  padding: 12px 0;
+  height: 45px;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0px;
+  z-index: 12;
+  background-color: var(--color-White);
+}
+
+.timelineMonthToggle span {
+  width: 110px;
+  text-align: center;
+}
+
+.arrowRight {
+  transform: rotate(180deg);
+}
+
+.right0 {
+  right: 0;
+  left: unset;
+}
+
+.sectionHeader {
+  margin-bottom: 28px;
+}
+
+.projectTimelineCont > :first-child {
+  height: 72px;
+  background-color: var(--color-FloralWhite);
+  padding: 0 32px !important;
+}
+
+.projectTimelineCont > div {
+  min-height: 100%;
+}
+
+.weekRow {
+  background-color: var(--color-White);
+  border-radius: 6px;
+  border: 1px solid var(--color-MetallicYellow);
+  padding: 0;
+  width: fit-content;
+}
+
+.weekRow .date {
+  display: inline-block;
+  margin: 8px 0;
+  padding: 0px 12px;
+  border-right: 0.5px solid var(--color-CadetGrey);
+}
+
+.weekRow .date:last-child {
+  border-right: none;
+}
+
+.weekRow .date.activeDate {
+  position: relative;
+  color: var(--color-SunsetOrange-1);
+}
+
+.weekRow .date.activeDate::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 90%;
+  height: 3px;
+  margin: 0 2px;
+  background-color: var(--color-SunsetOrange-1);
+  border-radius: 6px;
+}
+
+.talentColumn {
+  padding: 20px 0 30px 20px !important;
+}
+
+.roleDataContainer {
+  height: fit-content;
+  background-color: var(--color-GhostWhite);
+  border-radius: 6px;
+  margin: 16px 16px 20px 16px;
+}
+
+.filledPositions {
+  color: var(--color-AuroMetalSaurus);
+}
+
+.sectionTitle {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 28px;
+  color: var(--color-CharlestonGreen-1);
+}
+
+.talentTimeline {
+  display: grid;
+  gap: 0;
+  padding: 0 15px !important;
+  grid-template-columns: repeat(25, 1fr);
+}
+
+.talentTimeline.talentTimelineHeader {
+  gap: 16px;
+}
+
+.talentWeekTimeline {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.talentRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px 16px !important;
+  height: fit-content;
+}
+
+.timelineCell {
+  position: relative;
+  border-radius: 3px;
+  height: 100%;
+  display: flex;
+  padding: 3px 0;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.timelineCell span {
+  display: block;
+  margin: 2px 0;
+  margin-left: -1px;
+  height: 13px;
+  z-index: 1;
+}
+
+.timelineCell:first-of-type span {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.timelineCell:last-of-type span {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.timelineCell:first-of-type span {
+  margin-left: 0;
+}
+
+.timelineCell:first-of-type::before {
+  position: absolute;
+  content: " ";
+  height: 100%;
+  width: 100%;
+  border-left: 1px solid var(--color-Platinum);
+  z-index: 0;
+  background-color: inherit;
+}
+
+.timelineCell::after {
+  position: absolute;
+  content: " ";
+  height: 100%;
+  width: 100%;
+  border-right: 1px solid var(--color-Platinum);
+  background-color: inherit;
+}
+
+.timelineCell.activeCellDateBG {
+  background-color: var(--color-MistyRose);
+}
+
+.addTalentCont {
+  padding-left: 30px !important;
+  padding-bottom: 30px;
+}
+
+.addTalentBtn {
+  margin-top: 40px;
+  padding: 5px 10px;
+}
+
+.manageRoleOptions {
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.manageRoleMenu {
+  display: none;
+  padding: 12px 16px;
+  width: 145px;
+  z-index: 11;
+}
+
+.talentAdded {
+  background-color: var(--color-Bubbles);
+  padding: 5px 10px;
+  color: var(--color-OceanGreen);
+  width: fit-content;
+  margin-top: 16px;
+}
+
+.manageRoleOptions:hover .manageRoleMenu,
+.manageRoleMenu:hover {
+  display: block;
+}
+
+.talentTimelineFilled {
+  margin-left: 24px;
+  margin-right: 72px;
+  background-image: linear-gradient(90deg, lightgrey, 1px, transparent 1px);
+  background-size: 4%;
+  border-right: 1px solid lightgrey;
+  padding: 20px 0;
+  display: grid;
+  grid-auto-rows: 65px;
+  place-items: center;
+}
+
+.talentTimelineFilled > :first-child {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: grid;
+}
+
+.emptyTimelineRow {
+  height: 48px;
+  background-color: transparent;
+  width: 100%;
+  z-index: 1;
+  border-radius: 3px;
+  grid-column: 1 / 32;
+}
+
+.noAllocation {
+  z-index: 1;
+  height: 12px;
+  width: 100%;
+  border-radius: 3px;
+}
+
+.talentTimelineEmpty {
+  height: 100%;
+  margin-left: 24px;
+  margin-right: 72px;
+  background-image: linear-gradient(90deg, lightgrey, 1px, transparent 1px);
+  background-size: 4%;
+  border-right: 1px solid lightgrey;
+  padding: 0 !important;
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.talentTimelineEmpty > div:first-child,
+.talentTimeline1 > div:first-child {
+  display: grid;
+}
+
+.leftPanelItem {
+  height: 65px;
+  max-height: 65px;
+  padding: 10px 0;
+  align-items: center;
+}
+
+.matchedTalentCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0 20px;
+  position: relative;
+}
+
+.matchedTalentCard:after {
+  content: "";
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-Platinum);
+}
+
+.positionCard {
+  height: 100%;
+  position: relative;
+  border-bottom: 1px solid var(--color-Platinum);
+}
+
+.positionCard > div:first-child {
+  width: 100%;
+  padding: 22px 20px;
+}
+
+.positionName {
+  width: 100%;
+  display: flex;
+  padding: 12px 0 12px;
+  align-items: center;
+}
+
+.positionItemName {
+  display: flex;
+  padding: 12px 5px 12px 0;
+  align-items: center;
+}
+
+.positionDetailsBG {
+  display: none;
+  padding: 22px 20px;
+  top: 70%;
+  left: 16px;
+  position: absolute;
+  z-index: 3;
+  width: 100%;
+}
+
+.positionCard:hover .positionDetailsBG {
+  display: block;
+}
+
+.matchedTalentCard:first-child {
+  margin-top: 20px;
+}
+
+.addToProjectBtn {
+  width: 30px;
+  height: 30px;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.editRoleIcon {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .rotate180deg {
+    transform: rotateX(180deg);
+  }
+
+  .placeholderImage {
+    height: 245px;
+    width: 245px;
+  }
+
+  .addRoleBtn {
+    position: fixed;
+    bottom: 32px;
+    right: 16px;
+    z-index: 1;
+  }
+
+  .timelineHeader {
+    max-width: 100% !important;
+    padding: 16px;
+    padding-bottom: 0;
+    gap: 5px;
+    background: var(--color-White);
+  }
+
+  .detailHeader {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .positions {
+    padding-right: 8px;
+    margin-right: 8px;
+    border-right: 2px solid var(--color-Platinum);
+  }
+
+  .timelineWrapper {
+    display: block;
+  }
+
+  .rolesSectionWrapper {
+    width: 100%;
+    background: var(--color-White);
+  }
+
+  .positionItemContainer {
+    height: auto;
+  }
+
+  .positionItem {
+    padding: 10px 0;
+    height: auto;
+    display: flex;
+    align-items: none;
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "@allocate-core/util-data-values",
+  "version": "0.0.1",
+  "dependencies": {
+    "date-fns": "^2.29.3"
+  },
+  "main": "./index.js",
+  "module": "./index.mjs",
+  "typings": "./index.d.ts",
+  "private": true
+}

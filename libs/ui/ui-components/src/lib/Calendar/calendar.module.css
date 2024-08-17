@@ -1,0 +1,43 @@
+.customContainer {
+  height: 42px;
+  width: 100%;
+}
+
+.customInput {
+  font-family: var(--font-secondary);
+  font-size: 14px;
+  padding: 18px;
+  height: 44px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--color-LightSilver);
+  background-color: var(--color-White);
+  border-radius: 10px;
+  cursor: pointer;
+  padding-left: 40px;
+}
+
+.calendarIcon {
+  height: 100%;
+  width: 16px;
+  left: 10px;
+  position: absolute;
+  top: 0;
+  cursor: pointer;
+}
+
+.closeBtn {
+  height: 100%;
+  width: 20px;
+  right: 10px;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  background: transparent;
+  border: none;
+}
+
+.closeBtn > img {
+  width: 100%;
+  height: auto;
+}

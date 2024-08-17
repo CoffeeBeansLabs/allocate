@@ -1,0 +1,6 @@
+.message {
+  padding-left: 12px;
+  display: inline-block;
+  color: var(--color-CarminePink);
+  max-width: 90px;
+}

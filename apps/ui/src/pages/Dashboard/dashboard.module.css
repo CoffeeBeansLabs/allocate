@@ -1,0 +1,84 @@
+.navList {
+  position: fixed;
+  height: 100%;
+  width: 290px;
+  background-color: var(--color-White);
+  padding: 32px 16px 0 44px;
+}
+
+.navLink {
+  padding: 16px;
+  border-radius: 10px;
+}
+
+.active {
+  background-color: var(--color-Blueberry);
+  color: var(--color-White);
+}
+
+.mainSection {
+  position: relative;
+  left: 290px;
+  overflow: scroll;
+  min-height: 100%;
+  height: fit-content;
+  background-color: var(--color-GhostWhite);
+  width: calc(100% - 290px);
+  padding: 52px 70px 100px 50px;
+  border-top-left-radius: 60px;
+}
+
+.chart {
+  height: 325px;
+  width: 325px;
+}
+
+.subSectionTitle {
+  margin-top: 80px;
+}
+
+.numberIcon {
+  width: 35px;
+  height: 35px;
+}
+
+.locationChart {
+  margin-top: 18px;
+}
+
+.warningIcon {
+  width: 18px;
+  height: 18px;
+}
+
+.tooltipText {
+  width: 190px;
+  overflow-wrap: break-word;
+}
+
+.chartSelect {
+  width: 200px;
+}
+
+@media screen and (max-width: 768px) {
+  .navList {
+    display: none;
+  }
+
+  .mainSection {
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    padding: 20px 16px 80px 16px;
+    border-top-left-radius: 0;
+  }
+
+  .subSectionTitle {
+    margin-top: 40px;
+  }
+
+  .numberIcon {
+    width: 50px;
+    height: 50px;
+  }
+}

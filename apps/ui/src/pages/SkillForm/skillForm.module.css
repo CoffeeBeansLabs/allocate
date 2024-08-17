@@ -1,0 +1,109 @@
+.navbar {
+  position: fixed;
+  width: 100%;
+  height: 84px;
+  left: 0;
+  top: 0;
+  z-index: 40;
+  background: var(--color-White);
+  box-shadow: var(--shadow);
+  padding: 20px 170px;
+}
+
+.mainSection {
+  position: relative;
+  left: calc(50% - 350px);
+  background: var(--color-White);
+  width: 700px;
+  min-height: 100vh;
+  height: 100%;
+  overflow: auto;
+  padding: 70px 0;
+}
+
+.title {
+  text-align: center;
+}
+
+.loginBtn {
+  margin-top: 40px;
+  width: fit-content;
+  background: var(--color-White);
+  border: 1px solid var(--color-CetaceanBlue);
+  border-radius: 8px;
+  padding: 10px 17px;
+  gap: 8px;
+}
+
+.form {
+  margin: 0 150px;
+  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.inputs {
+  width: 370px;
+}
+
+.nextBtn {
+  margin-top: 25px;
+}
+
+.skillContainer {
+  height: 385px;
+  width: 100%;
+  overflow-y: auto;
+  margin-top: 25px;
+}
+
+.skill {
+  padding: 12px 10px;
+  border: 1px solid var(--color-LightSilver);
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    height: 66px;
+    z-index: 10;
+    padding: 12px 20px;
+  }
+
+  .mainSection {
+    left: 0;
+    width: 100%;
+    overflow: auto;
+    padding: 70px 0;
+    min-height: 100%;
+  }
+
+  .form {
+    padding: 0;
+    margin: 16px;
+    height: 100%;
+    padding-top: 50px;
+  }
+
+  .instruction {
+    padding-left: 16px;
+  }
+
+  .inputs {
+    width: 350px;
+  }
+
+  .skillContainer {
+    height: 370px;
+    width: 100%;
+    padding-right: 5px;
+  }
+}

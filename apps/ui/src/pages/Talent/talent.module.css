@@ -1,0 +1,165 @@
+.arrowStyle {
+  width: 18px;
+  height: 18px;
+}
+
+.section {
+  height: 100%;
+  min-height: 100%;
+  margin-bottom: 30px;
+  padding: 15px;
+}
+
+.sortByDropdown {
+  display: flex;
+  justify-content: space-between;
+}
+
+.talentHeader {
+  padding: 30px;
+  background: var(--color-GhostWhite-1);
+}
+
+.searchLabel {
+  padding-left: 4px;
+  padding-bottom: 8px;
+  display: inline-block;
+  font-family: var(--font-secondary);
+  color: var(--color-CharlestonGreen-1);
+}
+
+.timelineWrapper {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  min-height: calc(100% - 140px);
+}
+
+.talentSectionWrapper {
+  min-height: 100%;
+  width: 300px;
+  background: var(--color-White);
+  box-shadow: 0 4px 10px rgba(4 16 59 / 10%);
+  padding: 0 10px 20px 30px;
+}
+
+.talentSectionHeader {
+  height: 65px;
+  display: flex;
+  align-items: center;
+  color: var(--color-CadetGrey);
+}
+
+.projectDropdown {
+  height: 65px;
+  padding: 15px 10px 23px 0;
+}
+
+.talentItem {
+  height: 65px;
+  display: flex;
+  align-items: center;
+}
+
+.timelineMonthToggle {
+  display: flex;
+  padding: 12px 0;
+  height: 45px;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0px;
+  z-index: 12;
+  background-color: var(--color-White);
+}
+
+.timelineMonthToggle span {
+  width: 110px;
+  text-align: center;
+}
+
+.arrowRight {
+  transform: rotate(180deg);
+}
+
+.talentTimelineFilled {
+  margin-left: 24px;
+  margin-right: 72px;
+  background-image: linear-gradient(90deg, lightgrey, 1px, transparent 1px);
+  background-size: 4%;
+  border-right: 1px solid lightgrey;
+  padding: 20px 0;
+  display: grid;
+  grid-auto-rows: 65px;
+  place-items: center;
+  height: 100%;
+}
+
+.talentTimelineFilled > :first-child {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: grid;
+}
+
+.emptyTimelineRow {
+  height: 48px;
+  background-color: transparent;
+  width: 100%;
+  position: relative;
+  z-index: -100;
+  border-radius: 3px;
+  grid-column: 1 / 32;
+}
+
+.talentFooter {
+  padding: 10px;
+  position: sticky;
+  bottom: 0;
+  background-color: var(--color-White);
+  z-index: 35;
+}
+
+.errorMessage {
+  padding-left: 12px;
+  display: inline-block;
+  color: var(--color-CarminePink);
+}
+
+.statusFilter {
+  margin-right: 10px;
+  width: 300px;
+}
+
+@media screen and (max-width: 768px) {
+  .timelineWrapper {
+    display: block;
+  }
+
+  .talentSectionWrapper {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .talentSectionHeader {
+    display: none;
+  }
+
+  .projectDropdown {
+    display: none;
+  }
+
+  .talentItem {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    border-bottom: 2px solid var(--color-Platinum);
+  }
+
+  .rotate180deg {
+    transform: rotateX(180deg);
+  }
+
+  .button {
+    margin: 10px;
+  }
+}

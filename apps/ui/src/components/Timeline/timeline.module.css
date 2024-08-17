@@ -1,0 +1,261 @@
+.talentTimeline {
+  display: grid;
+  gap: 0;
+  padding: 0 15px !important;
+  grid-template-columns: repeat(25, 1fr);
+}
+
+.talentTimeline.talentTimelineHeader {
+  gap: 16px;
+}
+
+.talentWeekTimeline {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.talentRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px 16px !important;
+  height: fit-content;
+}
+
+.timelineCell {
+  position: relative;
+  border-radius: 3px;
+  height: 100%;
+  display: flex;
+  padding: 3px 0;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.timelineCell span {
+  display: block;
+  margin: 2px 0;
+  margin-left: -1px;
+  height: 13px;
+  z-index: 1;
+}
+
+.timelineCell:first-of-type span {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.timelineCell:last-of-type span {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.timelineCell:first-of-type span {
+  margin-left: 0;
+}
+
+.timelineCell:first-of-type::before {
+  position: absolute;
+  content: " ";
+  height: 100%;
+  width: 100%;
+  border-left: 1px solid var(--color-Platinum);
+  z-index: 0;
+  background-color: inherit;
+}
+
+.timelineCell::after {
+  position: absolute;
+  content: " ";
+  height: 100%;
+  width: 100%;
+  border-right: 1px solid var(--color-Platinum);
+  background-color: inherit;
+}
+
+.timelineCell.activeCellDateBG {
+  background-color: var(--color-MistyRose);
+}
+
+.timelineIndicatorBar {
+  width: 100%;
+  place-items: center;
+  border-radius: 3px;
+  position: relative;
+  margin-top: 0px;
+  transition: all 0.3s ease;
+}
+
+.overAllocated {
+  border: 2px solid var(--color-DarkWashedRed);
+  box-shadow: 0 0 5px rgba(255, 77, 79, 0.5);
+}
+
+.overAllocationIndicator {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-DarkWashedRed);
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 77, 79, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(255, 77, 79, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 77, 79, 0);
+  }
+}
+
+.timelineIndicatorBar:first-child {
+  margin-top: 0px;
+}
+
+.timelineTooltipWrapper:hover,
+.timelineIndicatorBar:hover > .timelineTooltipWrapper,
+.timelineIndicatorBar:hover > .timelineTooltipWrapper:hover {
+  display: block;
+}
+
+.debugValue {
+  font-size: 9px;
+  display: block;
+  margin-top: -6px;
+  font-weight: 700;
+  color: var(--color-Black);
+}
+
+.manageRoleOptions {
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.manageRoleMenu {
+  display: none;
+  padding: 12px 16px;
+  width: 145px;
+  z-index: 11;
+}
+
+.talentAdded {
+  background-color: var(--color-Bubbles);
+  padding: 5px 10px;
+  color: var(--color-OceanGreen);
+  width: fit-content;
+  margin-top: 16px;
+}
+
+.manageRoleOptions:hover .manageRoleMenu,
+.manageRoleMenu:hover {
+  display: block;
+}
+
+.talentTimelineFilled {
+  margin-left: 24px;
+  margin-right: 72px;
+  background-image: linear-gradient(90deg, lightgrey, 1px, transparent 1px);
+  background-size: 4%;
+  border-right: 1px solid lightgrey;
+  padding: 20px 0;
+  display: grid;
+  grid-auto-rows: 65px;
+  place-items: center;
+}
+
+.talentTimelineFilled > :first-child {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: grid;
+}
+
+.emptyTimelineRow {
+  height: 48px;
+  background-color: transparent;
+  width: 100%;
+  z-index: 1;
+  border-radius: 3px;
+  grid-column: 1 / 32;
+}
+
+.noAllocation {
+  z-index: 1;
+  height: 12px;
+  width: 100%;
+  border-radius: 3px;
+}
+
+.ktPeriod {
+  z-index: 4;
+  width: 100%;
+  background-image: repeating-linear-gradient(
+    120deg,
+    var(--color-White),
+    var(--color-White) 4px,
+    var(--color-DavysGrey) 4px,
+    var(--color-DavysGrey) 6px
+  );
+}
+
+.timelineRowWrapper {
+  display: grid;
+  width: 100%;
+  height: 65px;
+  align-content: center;
+  grid-auto-flow: dense;
+  position: relative;
+}
+
+.talentTimelineEmpty {
+  height: 100%;
+  margin-left: 24px;
+  margin-right: 72px;
+  background-image: linear-gradient(90deg, lightgrey, 1px, transparent 1px);
+  background-size: 4%;
+  border-right: 1px solid lightgrey;
+  padding: 0 !important;
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.talentTimelineEmpty > div:first-child,
+.talentTimeline1 > div:first-child {
+  display: grid;
+}
+
+.leftPanelItem {
+  height: 65px;
+  max-height: 65px;
+  padding: 10px 0;
+  align-items: center;
+}
+
+.matchedTalentCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0 20px;
+  position: relative;
+}
+
+.matchedTalentCard:after {
+  content: "";
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-Platinum);
+}

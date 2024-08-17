@@ -1,0 +1,32 @@
+.inputContainer {
+  outline: none;
+  width: 100%;
+  margin-top: 10px;
+  padding: 20px;
+  border: none;
+  border-bottom: 1px solid #59139e;
+  margin-left: auto;
+}
+
+input[type="Search"] {
+  width: 100%;
+  padding: 10px 10px;
+  display: inline-block;
+}
+
+.suggestions {
+  padding-bottom: 20px;
+  padding-top: 20px;
+  outline: none;
+  border-bottom: 1px solid #add8e6;
+  cursor: pointer;
+}
+
+.searchContainer {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.emptySearchResult {
+  padding: 70px;
+}

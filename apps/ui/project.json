@@ -1,0 +1,45 @@
+{
+  "name": "ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/ui/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project ui --web",
+  "targets": {
+    "coverage": {
+      "executor": "@nx/vite:test",
+      "options": {
+        "color": true,
+        "config": "apps/ui/vite.config.ts",
+        "coverage": true,
+        "coverageReporters": ["text", "html", "lcov"],
+        "open": true,
+        "ui": true,
+        "watch": true
+      }
+    },
+
+    "lint:fix": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["apps/ui/**/*.js", "apps/ui/**/*.jsx"],
+        "quiet": true,
+        "fix": true,
+        "ignorePath": "./.gitignore"
+      }
+    },
+    "lint:format": {
+      "command": "prettier --write \"apps/ui/**/*.{js,jsx,css,md,json}\"",
+      "options": {
+        "log-level": "warn"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["nx lint:format ui", "nx lint:fix ui"],
+        "parallel": false
+      }
+    }
+  }
+}

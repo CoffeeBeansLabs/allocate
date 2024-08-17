@@ -1,0 +1,19 @@
+.additionalDetails {
+  margin-bottom: 32px;
+}
+
+.formSubSectionCard {
+  margin-top: 32px;
+  border-radius: 10px;
+  padding: 20px 0;
+  background-color: rgba(var(--color-CadetGreyRGB), 0.1);
+}
+
+@media screen and (max-width: 768px) {
+  .formSubSectionCard {
+    background-color: var(--color-White);
+    margin-top: 32px;
+    border-radius: 0;
+    padding: 0 !important;
+  }
+}

@@ -1,0 +1,33 @@
+# Ignore node_modules directory
+node_modules/
+
+# ignoring security testing test case
+src/test/features/security_testing/
+src/test/stepDefinitions/security_steps/
+
+# Ignore all reports
+allure-report/
+allure-results/
+videos/
+
+# Ignore .env files which might contain sensitive information
+.env
+
+# Ignore build output directories
+build/
+
+# Ignore IDE specific files
+.vscode/
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore npm debug log
+npm-debug.log*
+
+# Ignore yarn integrity file
+.yarn-integrity
+
+# Ignore coverage directory
+/coverage

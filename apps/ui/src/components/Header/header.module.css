@@ -1,0 +1,292 @@
+.navbar {
+  position: fixed;
+  width: 100%;
+  height: 84px;
+  left: 0;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: var(--color-White);
+  box-shadow: var(--shadow);
+}
+
+.navList {
+  width: 620px;
+  align-items: center;
+}
+
+.navList ul {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.navList > ul > li {
+  padding: 20px 10px;
+}
+
+.navLink {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.37;
+  color: var(--color-CharlestonGreen-1);
+}
+
+.active {
+  color: var(--color-SunsetOrange-1);
+}
+
+.navLink.active::after {
+  content: "";
+  position: absolute;
+  margin: auto;
+  bottom: 10px;
+  width: 22px;
+  height: 2px;
+  background-color: var(--color-SunsetOrange-1);
+  border-radius: 3px;
+}
+
+.universalSearchIcon {
+  height: 26px;
+  width: 26px;
+  margin-left: 5px;
+  margin-top: 7px;
+  cursor: pointer;
+}
+
+.universalSearchIcon:hover {
+  transform: scale(1.15);
+}
+
+.notificationBell {
+  width: 26px;
+  margin-top: -8px;
+}
+
+.bellIcon {
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  margin-top: -15px;
+}
+
+.bellIcon:hover {
+  transform: scale(1.15);
+}
+
+.notificationCount {
+  position: relative;
+  right: -14px;
+  color: var(--color-White);
+  background-color: var(--color-SunsetOrange-1);
+  height: 25px;
+  min-width: 25px;
+  width: fit-content;
+  padding: 0 2px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.notificationContainer {
+  z-index: 50;
+  position: absolute;
+  padding: 25px 20px 10px 15px;
+  top: 65px;
+  right: 10%;
+  height: 310px;
+  width: 300px;
+  overflow: auto;
+}
+
+.messageContainer {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 4px rgb(0 0 0 / 25%);
+}
+
+.messageContainer:hover {
+  border: 1px solid var(--color-CharlestonGreen-1);
+}
+
+.unseen {
+  background-color: var(--color-SunsetOrange-1);
+  color: var(--color-White);
+}
+
+.seen {
+  background-color: var(--color-Platinum);
+  color: var(--color-CharlestonGreen-1);
+}
+
+.profile img {
+  width: 45px;
+  height: 45px;
+  padding: 2px;
+  border-radius: 50%;
+  border: 1px solid var(--color-Platinum);
+  cursor: pointer;
+}
+
+.profile img:hover {
+  transform: scale(1.1);
+}
+
+.profileMenu {
+  height: fit-content;
+  width: 250px;
+  padding: 12px 0;
+  position: absolute;
+  top: 65px;
+  right: 5%;
+  z-index: 20;
+}
+
+.userInfo {
+  border-bottom: 1px solid var(--color-Platinum);
+  padding: 16px;
+  margin-bottom: 10px;
+}
+
+.menuItem {
+  cursor: pointer;
+  padding: 5px 16px;
+}
+
+.menuItem:hover,
+.menuItem.disabled {
+  background-color: rgba(225, 225, 225, 0.5);
+}
+
+.searchModalContent {
+  margin-top: 5px;
+}
+
+.searchResultsContainer {
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.resultContainer {
+  cursor: pointer;
+  margin: 10px 0;
+  padding: 15px;
+  background-color: var(--color-White);
+  border-radius: 10px;
+  box-shadow: 0 0 4px rgb(0 0 0 / 25%);
+}
+
+.resultContainer:hover {
+  border: 1px solid var(--color-CharlestonGreen-1);
+  box-shadow: none;
+}
+
+ul.navDropdown {
+  display: none;
+  height: fit-content;
+  width: 250px;
+  padding: 12px 0;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  z-index: 20;
+}
+
+.dropdownHover:hover ul.navDropdown {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    height: 66px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 35px;
+    box-shadow: none;
+    padding: 0 16px;
+    z-index: 10;
+  }
+
+  .mobileMenuView {
+    position: fixed;
+    background: rgba(4, 16, 59, 0.72);
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 100;
+  }
+
+  .mobileNav {
+    padding: 16px;
+    background-color: var(--color-GhostWhite-1);
+    width: 80%;
+    height: 100%;
+  }
+
+  .navList {
+    width: 100%;
+    height: 80%;
+    overflow: scroll;
+  }
+
+  .navList ul {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .navList > ul > li {
+    padding: 0;
+  }
+
+  .navLink {
+    padding: 16px 0;
+  }
+
+  .mobileFooter {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: absolute;
+    bottom: 25px;
+    left: 16px;
+  }
+
+  .notificationContainer {
+    position: absolute;
+    padding: 25px 20px 10px 15px;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    z-index: 200;
+  }
+
+  .closeIcon {
+    padding-left: 90%;
+    padding-bottom: 16px;
+  }
+
+  .profileMenu {
+    left: 15px;
+  }
+
+  .navigationItem {
+    font-size: 20px !important;
+  }
+
+  .rotate180 {
+    transform: rotate(180deg);
+  }
+}

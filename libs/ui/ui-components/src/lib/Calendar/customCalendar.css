@@ -1,0 +1,41 @@
+.rmdp-wrapper {
+  width: 100%;
+}
+
+.rmdp-wrapper .rmdp-top-class .rmdp-calendar {
+  padding: 20px;
+  width: 100%;
+}
+
+.rmdp-header {
+  border-bottom: 1px solid var(--color-LightSilver2);
+}
+
+.rmdp-day-picker {
+  gap: 10px;
+  width: 100%;
+}
+
+.rmdp-day-picker > div:first-child {
+  width: 100%;
+}
+
+.rmdp-week-day {
+  text-transform: uppercase;
+}
+
+.rmdp-week-day,
+.rmdp-day {
+  width: 40px;
+  height: 40px;
+}
+
+@media screen and (max-width: 768px) {
+  .rmdp-wrapper {
+    width: fit-content;
+  }
+
+  .rmdp-header {
+    border-bottom: none;
+  }
+}

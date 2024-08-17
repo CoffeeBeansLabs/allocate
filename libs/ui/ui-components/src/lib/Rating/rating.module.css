@@ -1,0 +1,36 @@
+.skillRating {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.ratingBlock {
+  display: inline-block;
+  width: 9px;
+  height: 6px;
+  background-color: var(--color-LightSilver2);
+  border-radius: 1px;
+}
+
+.ratingBlock.filled {
+  background: var(--color-BrightYellow);
+}
+
+.editRatingBlock {
+  cursor: pointer;
+  display: inline-block;
+  width: 15px;
+  height: 8px;
+  background-color: var(--color-LightSilver2);
+  border-radius: 1px;
+}
+
+.editRatingBlock.filled {
+  background: var(--color-BrightYellow);
+}
+
+.binIcon {
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+}
