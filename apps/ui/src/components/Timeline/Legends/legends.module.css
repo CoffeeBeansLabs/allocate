@@ -1,0 +1,65 @@
+.legendItem {
+  gap: 12px;
+  margin: 20px;
+}
+
+.colorCode {
+  width: 29px;
+  height: 13px;
+  border-radius: 3px;
+}
+
+.red {
+  background: var(--color-SunsetOrange-1);
+}
+
+.yellow {
+  background: var(--color-BrightYellow);
+}
+
+.green {
+  background-color: var(--color-OceanGreen);
+}
+
+.black {
+  background: var(--color-CharlestonGreen-1);
+}
+
+.pink {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-LightRed),
+    var(--color-LightRed) 5px,
+    var(--color-White) 5px,
+    var(--color-White) 6px
+  );
+}
+
+.gray {
+  background: repeating-linear-gradient(
+    120deg,
+    var(--color-White),
+    var(--color-White) 4px,
+    var(--color-DavysGrey) 4px,
+    var(--color-DavysGrey) 6px
+  );
+}
+
+.fleshPink {
+  background: var(--color-FleshPink);
+  border: 1px solid var(--color-DarkWashedRed);
+}
+
+.yellowBorder {
+  border: 1px solid var(--color-BrightYellow);
+}
+
+.inactiveRed {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-SunsetOrange-1),
+    var(--color-SunsetOrange-1) 5px,
+    var(--color-White) 5px,
+    var(--color-White) 8px
+  );
+}

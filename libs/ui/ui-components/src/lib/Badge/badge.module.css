@@ -1,0 +1,36 @@
+.badge {
+  height: 30px;
+  height: fit-content;
+  border-radius: 4px;
+  align-items: center;
+  padding: 5px;
+  width: fit-content;
+}
+
+.green {
+  color: var(--color-Green);
+  background: var(--color-Honeydew);
+}
+
+.red {
+  color: var(--color-Persimmon);
+  background: var(--color-Seashell);
+}
+
+.grey {
+  color: var(--color-DarkGrey);
+  background: var(--color-Platinum);
+}
+
+.charcoal {
+  color: var(--color-White);
+  background: var(--color-Charcoal);
+}
+
+@media screen and (max-width: 768px) {
+  .badge {
+    height: 25px;
+    width: fit-content;
+    padding: 2.5px 5px;
+  }
+}

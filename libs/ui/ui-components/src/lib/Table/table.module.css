@@ -1,0 +1,80 @@
+.table {
+  width: 100%;
+  border: 1px solid var(--color-CadetGrey);
+  border-radius: 16px;
+  border-spacing: 0;
+  border-collapse: unset;
+  background-color: var(--color-White);
+}
+
+.table tr {
+  display: flex;
+  width: 100%;
+}
+
+.header {
+  margin: 0 !important;
+  background: rgba(156, 163, 175, 0.1);
+  color: var(--color-CadetGrey);
+  border-radius: 16px 16px 0 0;
+  padding: 16px 25px;
+}
+
+.tbody {
+  display: block;
+  padding: 24px 25px;
+}
+
+.tbody .tableRow {
+  margin: 0 !important;
+  cursor: pointer;
+  padding: 16px 0;
+}
+
+tbody tr:hover {
+  background: var(--color-CetaceanBlue2);
+  border-radius: 10px;
+}
+
+.tbody .tableRow:first-child {
+  margin-top: 0;
+}
+
+.tbody .tableRow:last-child {
+  margin-bottom: 0;
+}
+
+.pagination {
+  padding-top: 30px;
+  gap: 45px;
+}
+
+.pagination button {
+  border: none;
+  background-color: transparent;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.rightArrow {
+  transform: rotate(-90deg);
+  cursor: pointer;
+}
+
+.leftArrow {
+  transform: rotate(90deg);
+  cursor: pointer;
+}
+
+.noDataText {
+  color: var(--color-CadetGrey);
+}
+
+@media screen and (max-width: 768px) {
+  .tbody {
+    padding: 0;
+  }
+}

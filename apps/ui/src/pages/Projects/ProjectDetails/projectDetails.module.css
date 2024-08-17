@@ -1,0 +1,50 @@
+.mainSection {
+  padding: 30px;
+  padding-bottom: 65px;
+}
+
+.pagePosition {
+  color: var(--color-CharlestonGreen-1);
+}
+
+.header {
+  margin: 6px 0 30px;
+}
+
+.titleName {
+  color: var(--color-CharlestonGreen-1);
+  margin-right: 16px;
+}
+
+.sectionTitle {
+  margin-bottom: 10px;
+  color: var(--color-CetaceanBlue);
+}
+
+.actionsBox {
+  margin-bottom: 30px;
+}
+
+.customLabel {
+  gap: 10px !important;
+}
+
+.iconImage {
+  width: 18px;
+  height: 18px;
+}
+
+.buttonIcon {
+  width: 20px;
+  height: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .mainSection {
+    padding: 0 16px 24px 16px;
+  }
+
+  .customLabel {
+    gap: 10px !important;
+  }
+}

@@ -1,0 +1,31 @@
+.positionSection {
+  margin: 30px 0;
+}
+
+.positionCard {
+  padding: 30px 20px;
+  gap: 13px;
+}
+
+.iconImage {
+  height: 18px;
+  width: 18px;
+}
+
+.bin {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .positionCard {
+    background: var(--color-White);
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 13px;
+  }
+
+  .expMobileFlex {
+    width: 100%;
+  }
+}

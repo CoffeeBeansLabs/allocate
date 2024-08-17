@@ -1,0 +1,19 @@
+{
+  "name": "util-data-values",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui/util-data-values/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/ui/util-data-values",
+        "main": "libs/ui/util-data-values/src/index.js",
+        "tsConfig": "libs/ui/util-data-values/tsconfig.lib.json",
+        "assets": ["libs/ui/util-data-values/*.md"]
+      }
+    }
+  }
+}

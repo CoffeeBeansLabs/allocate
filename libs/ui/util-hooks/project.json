@@ -1,0 +1,19 @@
+{
+  "name": "util-hooks",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui/util-hooks/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/ui/util-hooks",
+        "main": "libs/ui/util-hooks/src/index.js",
+        "tsConfig": "libs/ui/util-hooks/tsconfig.lib.json",
+        "assets": ["libs/ui/util-hooks/*.md"]
+      }
+    }
+  }
+}

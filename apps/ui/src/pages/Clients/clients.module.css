@@ -1,0 +1,53 @@
+.section {
+  padding: 30px;
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.actionsBox {
+  margin-bottom: 30px;
+}
+
+.chevronRight {
+  transform: rotate(-90deg);
+}
+
+.clientSortDropdown {
+  display: flex;
+  justify-content: space-between;
+}
+
+.arrowStyle {
+  width: 18px;
+  height: 18px;
+}
+
+@media screen and (max-width: 768px) {
+  .section {
+    padding: 12px;
+  }
+
+  .header {
+    margin-bottom: 0;
+  }
+
+  .clientRowCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px;
+    padding: 19px 16px;
+    margin-bottom: 16px;
+    color: var(--color-CharlestonGreen-1);
+    background: var(--color-GhostWhite-1);
+  }
+
+  .header .addClientFloatingBtn {
+    position: fixed;
+    bottom: 32px;
+    right: 16px;
+    z-index: 1;
+  }
+}

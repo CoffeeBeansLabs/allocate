@@ -1,0 +1,7 @@
+.profile img {
+  width: 45px;
+  height: 45px;
+  padding: 2px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-Platinum);
+}

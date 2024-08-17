@@ -1,0 +1,176 @@
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import { BrowserRouter } from "react-router-dom";
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  test,
+  vi,
+} from "vitest";
+
+import AuthenticatedAPI from "../../api/API";
+import QuickSearch from ".";
+
+const localStorageMock = {
+  getItem: vi.fn(),
+  setItem: vi.fn(),
+  removeItem: vi.fn(),
+};
+
+beforeAll(() => {
+  vi.stubGlobal("localStorage", localStorageMock);
+});
+
+afterAll(() => {
+  vi.unstubAllGlobals();
+});
+
+describe("quick search", () => {
+  const user = userEvent.setup();
+  let authenticatedAxiosMock;
+  let mockCountriesMock;
+
+  beforeEach(() => {
+    authenticatedAxiosMock = new MockAdapter(AuthenticatedAPI);
+    mockCountriesMock = new MockAdapter(axios);
+  });
+
+  afterEach(() => {
+    authenticatedAxiosMock.reset();
+    mockCountriesMock.reset();
+  });
+
+  test("should render quick search landing", async () => {
+    render(
+      <BrowserRouter>
+        <QuickSearch />
+      </BrowserRouter>,
+    );
+    expect(await screen.findByRole("heading", { name: /quick search - talent/i }));
+    expect(screen.queryByText(/skillset \*/i)).toBeInTheDocument();
+    expect(screen.queryByText(/choose project/i)).toBeInTheDocument();
+  });
+
+  test("should add more and remove fields", async () => {
+    render(
+      <BrowserRouter>
+        <QuickSearch />
+      </BrowserRouter>,
+    );
+
+    const addMoreBtn = await screen.findByText(/\+ add more/i);
+    await user.click(addMoreBtn);
+    await user.click(addMoreBtn);
+    expect(screen.queryAllByText(/skillset \*/i)).toHaveLength(3);
+    const removeBtns = screen.queryAllByAltText(/delete icon/i);
+    await user.click(removeBtns[1]);
+    expect(screen.queryAllByText(/skillset \*/i)).toHaveLength(2);
+  });
+
+  test.skip("should have dropdown values", async () => {
+    authenticatedAxiosMock.onGet("/user/get-user-countries").reply(200, {
+      countries: ["United States"],
+    });
+    authenticatedAxiosMock.onGet("/projects/position-dropdowns/").reply(200, {
+      dropdowns: {
+        roles: [{ id: 1, name: "Test Role" }],
+        skills: [{ id: 1, name: "Test Skill" }],
+        locations: ["New York", "Los Angeles", "Chicago"],
+      },
+    });
+
+    render(
+      <BrowserRouter>
+        <QuickSearch />
+      </BrowserRouter>,
+    );
+    const rolesDropdown = await screen.findByRole("combobox", { name: /role/i });
+    expect(rolesDropdown).toBeInTheDocument();
+    const skillsDropdown = await screen.findByRole("combobox", { name: /skills/i });
+    expect(skillsDropdown).toBeInTheDocument();
+  });
+
+  test("should validate required on submit", async () => {
+    render(
+      <BrowserRouter>
+        <QuickSearch />
+      </BrowserRouter>,
+    );
+    const filterDropdowns = await screen.findAllByAltText(
+      /click to toggle dropdown menu/i,
+    );
+    await user.click(filterDropdowns[2]);
+    await user.click(screen.queryByText(6));
+    await user.click(filterDropdowns[3]);
+    await user.click(screen.queryByText(2));
+    await user.click(screen.queryByRole("button", { name: /search/i }));
+
+    expect(screen.queryByText(/select atleast 1 skill/i)).toBeInTheDocument();
+    expect(screen.queryAllByText(/to is less than from/i)).toHaveLength(2);
+
+    const availabilityInput = screen.getAllByRole("spinbutton");
+    await user.type(availabilityInput[0], "200");
+    expect(screen.queryAllByText(/maximum is 100/i)).toHaveLength(
+      availabilityInput.length,
+    );
+
+    await user.clear(availabilityInput[0]);
+    await user.type(availabilityInput[0], "1");
+    expect(screen.queryAllByText(/minimum is 5/i)).toHaveLength(availabilityInput.length);
+  });
+
+  test.skip("should store data in local storage", async () => {
+    authenticatedAxiosMock.onGet("/user/get-user-countries").reply(200, {
+      countries: ["United States"],
+    });
+
+    authenticatedAxiosMock.onGet("/projects/position-dropdowns/").reply(200, {
+      dropdowns: {
+        roles: [],
+        skills: [{ id: 1, name: "Test Skill" }],
+        location: [],
+      },
+    });
+    render(
+      <BrowserRouter>
+        <QuickSearch />
+      </BrowserRouter>,
+    );
+
+    expect(localStorageMock.removeItem).toHaveBeenCalled();
+    const filterDropdowns = await screen.findAllByAltText(
+      /click to toggle dropdown menu/i,
+    );
+    await user.click(filterDropdowns[1]);
+    await user.click(screen.queryAllByText(/test skill/i)[0]);
+    await user.click(filterDropdowns[6]);
+
+    await user.click(screen.getByText(/united states/i));
+    await user.click(screen.queryByRole("button", { name: /search/i }));
+
+    expect(localStorageMock.setItem).toHaveBeenCalledWith(
+      "quick-search",
+      JSON.stringify({
+        positions: [
+          {
+            role: null,
+            skills: [{ value: 1, label: "Test Skill" }],
+            experienceRangeStart: null,
+            experienceRangeEnd: null,
+            dateValues: [],
+            utilization: null,
+          },
+        ],
+        projects: [],
+        country: { value: "United States", label: "United States" },
+        locations: [],
+      }),
+    );
+  });
+});

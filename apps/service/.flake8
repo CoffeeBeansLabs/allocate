@@ -1,0 +1,13 @@
+[flake8]
+exclude =
+	.git,
+	__pycache__,
+	build,
+	dist,
+	.tox,
+	venv,
+	.venv,
+	.pytest_cache,
+	./staffing_tool/settings/*
+	./*/migrations/*
+max-line-length = 120

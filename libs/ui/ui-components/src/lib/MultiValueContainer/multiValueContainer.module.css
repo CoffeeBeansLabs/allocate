@@ -1,0 +1,29 @@
+.container {
+  min-width: 350px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-LightSilver);
+  border-radius: 10px;
+}
+
+.valuesContainer {
+  padding: 5px 15px;
+  min-height: 80px;
+  max-height: 130px;
+  overflow-y: auto;
+}
+
+.valueItem {
+  margin: 2px;
+  border-radius: 20px;
+  background-color: var(--color-BrightGray);
+  width: fit-content;
+  height: 34px;
+  padding: 5px 12px;
+  color: var(--color-GraniteGray);
+}
+
+.crossIcon {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}

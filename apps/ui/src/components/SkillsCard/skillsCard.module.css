@@ -1,0 +1,63 @@
+.moreDetailsLink {
+  cursor: pointer;
+  color: var(--color-Blueberry);
+}
+
+.skillsCardTrigger {
+  cursor: pointer;
+}
+
+.skillsCardTrigger:hover .skillsCard {
+  display: block;
+}
+
+.skillsCard {
+  display: none;
+  position: absolute;
+  z-index: 1200;
+  padding: 16px 16px 10px;
+  width: 226px;
+  top: 35px;
+  left: 0;
+  color: var(--color-CharlestonGreen);
+}
+
+.skillCardItems {
+  max-height: 185px;
+  overflow: auto;
+  color: var(--color-Indigo);
+  display: flex;
+  padding: 12px 10px 12px 0;
+  flex-direction: column;
+}
+
+.skillItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+
+.hr {
+  display: block;
+  margin-top: 10px;
+}
+
+.talentName {
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.talentName:hover {
+  background-color: var(--color-CetaceanBlue2);
+}
+
+@media screen and (max-width: 768px) {
+  .skillCardItems {
+    padding-bottom: 0;
+  }
+
+  .skillItem {
+    padding: 0;
+  }
+}

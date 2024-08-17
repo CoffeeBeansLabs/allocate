@@ -1,0 +1,28 @@
+.label {
+  padding-left: 4px;
+  padding-bottom: 8px;
+  display: inline-block;
+}
+
+.radio,
+.radioChecked {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: var(--color-Blueberry);
+}
+
+.radio {
+  border-width: 1px;
+}
+
+.radioChecked {
+  border-width: 6px;
+}
+
+.radio:hover,
+.radioChecked:hover {
+  cursor: pointer;
+}

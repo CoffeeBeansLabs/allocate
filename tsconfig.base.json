@@ -1,0 +1,25 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@allocate-core/ui-components": ["libs/ui/ui-components/src/index.jsx"],
+      "@allocate-core/util-data-values": ["libs/ui/util-data-values/src/index.js"],
+      "@allocate-core/util-formatting": ["libs/ui/util-formatting/src/index.js"],
+      "@allocate-core/util-hooks": ["libs/ui/util-hooks/src/index.js"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

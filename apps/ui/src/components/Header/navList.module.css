@@ -1,0 +1,32 @@
+.navList {
+  width: 520px;
+  align-items: center;
+}
+
+.navList ul {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.navLink {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.37;
+  color: var(--color-CharlestonGreen-1);
+}
+
+.active {
+  color: var(--color-SunsetOrange-1);
+}
+
+.navLink.active::after {
+  content: "";
+  margin-top: 7px;
+  position: relative;
+  width: 22px;
+  height: 2px;
+  background-color: var(--color-SunsetOrange-1);
+  border-radius: 3px;
+}

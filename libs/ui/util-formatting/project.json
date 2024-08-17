@@ -1,0 +1,19 @@
+{
+  "name": "util-formatting",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui/util-formatting/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/ui/util-formatting",
+        "main": "libs/ui/util-formatting/src/index.js",
+        "tsConfig": "libs/ui/util-formatting/tsconfig.lib.json",
+        "assets": ["libs/ui/util-formatting/*.md"]
+      }
+    }
+  }
+}

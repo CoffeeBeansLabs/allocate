@@ -1,0 +1,11 @@
+{
+  "name": "@allocate-core/util-hooks",
+  "version": "0.0.1",
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "main": "./index.js",
+  "module": "./index.mjs",
+  "typings": "./index.d.ts",
+  "private": true
+}

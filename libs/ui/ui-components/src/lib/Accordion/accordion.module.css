@@ -1,0 +1,11 @@
+.chevronUp {
+  transform: rotate(-180deg);
+}
+
+.accordionHeader {
+  width: 100%;
+  display: flex;
+  padding: 22px 20px;
+  align-items: center;
+  justify-content: space-between;
+}

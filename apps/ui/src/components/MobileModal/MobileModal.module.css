@@ -1,0 +1,103 @@
+.modalBody {
+  padding: 20px 5px;
+  display: flex;
+  margin-top: 10%;
+  background-color: var(--color-White);
+  border-radius: 10px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  min-height: 30%;
+  max-height: 90%;
+  overflow-y: scroll;
+}
+
+.modalBackground {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  background: rgba(4, 16, 59, 0.72);
+  z-index: 20;
+  -webkit-transition:
+    opacity 0.3s ease-out,
+    bottom 0.3s ease-out;
+  -moz-transition:
+    opacity 0.3s ease-out,
+    bottom 0.3s ease-out;
+  -o-transition:
+    opacity 0.3s ease-out,
+    bottom 0.3s ease-out;
+  transition:
+    opacity 0.3s ease-out,
+    bottom 0.3s ease-out;
+}
+
+.modalContainer {
+  width: auto;
+  height: 100%;
+  border-radius: 2px 2px 0 0;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  bottom: 0px;
+}
+
+.closeModal {
+  justify-content: end;
+  background-color: transparent;
+  border: none;
+}
+
+.modalHeader {
+  display: flex;
+  flex-direction: row;
+}
+
+.modalHeaderContent {
+  position: absolute;
+  background-color: var(--color-White);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  z-index: 3;
+  padding: 8px;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.modalContent {
+  overflow: scroll;
+  margin-top: 72px;
+  width: 100%;
+  padding: 8px;
+}
+
+.closeBtn {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.fullScreenModal {
+  display: flex;
+  height: 100%;
+  min-height: 30%;
+  width: 100%;
+  margin-top: 10%;
+  background-color: var(--color-White);
+  position: absolute;
+  bottom: 0;
+  overflow-y: scroll;
+
+  z-index: 999;
+}
+
+.backButton {
+  margin-left: 15px;
+}

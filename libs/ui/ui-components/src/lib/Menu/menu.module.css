@@ -1,0 +1,23 @@
+.menu {
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.menuOptions:hover,
+.menu:hover .menuOptions {
+  display: block;
+}
+
+.menuOptions {
+  left: 0;
+  top: calc(100% - 14px);
+  z-index: 50;
+  display: none;
+  width: max-content;
+}
+
+@media screen and (max-width: 768px) {
+  .menuOptions {
+    transform: translateX(-85%) translateY(5%);
+  }
+}

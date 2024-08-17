@@ -1,0 +1,111 @@
+.btn {
+  padding: 12px 16px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s all;
+  font-family: var(--font-secondary);
+}
+
+.btn:disabled {
+  pointer-events: none;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.plain {
+  padding: 0;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.plain:active {
+  transform: none;
+}
+
+.primary {
+  background-color: var(--color-Blueberry);
+  color: var(--color-White);
+}
+
+.primary:hover {
+  background-color: var(--color-HanBlue);
+}
+
+.primary:focus {
+  background-color: var(--color-YaleBlue);
+}
+
+.primary:disabled {
+  background-color: var(--color-LavenderBlue);
+}
+
+.secondary {
+  background-color: var(--color-White);
+  color: var(--color-Blueberry);
+  border: 1px solid var(--color-Blueberry);
+}
+
+.secondary:focus {
+  background-color: var(--color-Water);
+  border-color: 1px solid var(--color-PaleCornflowerBlue);
+}
+
+.secondary:hover {
+  background-color: var(--color-AliceBlue);
+  border-color: 1px solid var(--color-PaleCornflowerBlue);
+}
+
+.secondary:disabled {
+  color: var(--color-BabyBlueEyes);
+  border: 1px solid var(--color-LavenderBlue);
+}
+
+.secondary.red {
+  color: var(--color-SunsetOrange-1);
+  border: 1px solid var(--color-SunsetOrange-1);
+}
+
+.secondary.red:hover {
+  background-color: whitesmoke;
+}
+
+.secondary.red:focus {
+  background-color: transparent;
+}
+
+.secondary.green {
+  color: var(--color-OceanGreen);
+  border: 1px solid var(--color-OceanGreen);
+}
+
+.tertiary {
+  padding: 4px;
+  background-color: transparent;
+  color: var(--color-Blueberry);
+}
+
+/* size */
+
+.sm {
+  padding: 5px 10px;
+}
+
+.md {
+}
+
+.lg {
+}
+
+/* colors */
+
+.default {
+}

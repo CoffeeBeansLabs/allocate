@@ -1,0 +1,51 @@
+.section {
+  padding: 30px;
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.iconImage {
+  width: 18px;
+  height: 18px;
+}
+
+.actionsBox {
+  margin-bottom: 30px;
+}
+
+.customLabel {
+  gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .section {
+    padding: 12px;
+  }
+
+  .header {
+    margin-bottom: 0;
+  }
+
+  .header .addProjectFloatingBtn {
+    position: fixed;
+    bottom: 32px;
+    right: 16px;
+    z-index: 1;
+  }
+
+  .projectHeader {
+    color: var(--color-CadetGrey);
+    padding: 0 16px;
+    padding-bottom: 7px;
+    height: 60px;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .statusSelect {
+    height: 30px;
+    width: 120px;
+  }
+}

@@ -1,0 +1,182 @@
+.hide {
+  display: none !important;
+}
+
+.show {
+  display: block !important;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-iBlock {
+  display: inline-block !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.mr-auto {
+  margin-right: auto;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.gap-10 {
+  gap: 10px;
+}
+
+.gap-20 {
+  gap: 20px;
+}
+
+.gap-30 {
+  gap: 30px;
+}
+
+.gap-40 {
+  gap: 40px;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+.br-10 {
+  border-radius: 10px;
+}
+
+.pa-0 {
+  padding: 0 !important;
+}
+
+.px-0 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.py-0 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.px-20 {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+.py-20 {
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+}
+
+.pl-0 {
+  padding-left: 0;
+}
+
+.pl-20 {
+  padding-left: 20px !important;
+}
+
+.pl-25 {
+  padding-left: 25px !important;
+}
+
+.pl-40 {
+  padding-left: 40px !important;
+}
+
+.pt-16 {
+  padding-top: 16px;
+}
+
+.pt-20 {
+  padding-top: 20px;
+}
+
+.mt-16 {
+  margin-top: 16px;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.color-CadetGrey {
+  color: var(--color-CadetGrey);
+}
+
+.bg-CadetGrey-op-10 {
+  background-color: rgba(var(--color-CadetGreyRGB), 0.1);
+}
+
+.card-1 {
+  background: var(--color-White);
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+
+.error {
+  color: var(--color-MaximumRed);
+}
+
+.success {
+  color: var(--color-OceanGreen);
+}

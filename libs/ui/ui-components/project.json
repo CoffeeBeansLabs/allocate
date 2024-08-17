@@ -1,0 +1,19 @@
+{
+  "name": "ui-components",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui/ui-components/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/ui/ui-components",
+        "main": "libs/ui/ui-components/src/index.jsx",
+        "tsConfig": "libs/ui/ui-components/tsconfig.lib.json",
+        "assets": ["libs/ui/ui-components/*.md"]
+      }
+    }
+  }
+}

@@ -1,0 +1,155 @@
+:root {
+  font-family: "Montserrat", Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  --font-primary: "roc-grotesk-wide";
+  --font-secondary: "Montserrat";
+
+  --shadow: 0px 4px 5px rgba(4, 16, 59, 0.07);
+
+  --color-Green: #16a34a;
+  --color-Black: #000000;
+  --color-White: #ffffff;
+  --color-Water: #cae2ff;
+  --color-Tulip: #ff928e;
+  --color-Indigo: #203164;
+  --color-HanBlue: #377acc;
+  --color-Bubbles: #ebfef8;
+  --color-DarkGrey: #5d5c5b;
+  --color-LightRed: #fbcfcf;
+  --color-Honeydew: #f0fdf4;
+  --color-Lavender: #e0e6fa;
+  --color-Cultured: #f5f5f5;
+  --color-YaleBlue: #1a5197;
+  --color-Seashell: #fff7ed;
+  --color-Platinum: #dfe0eb;
+  --color-Charcoal: #36454f;
+  --color-Blueberry: #4c9cff;
+  --color-Gainsboro: #dbdbdf;
+  --color-CadetGrey: #9ca3af;
+  --color-Persimmon: #ea580c;
+  --color-Blueberry: #4c9cff;
+  --color-AliceBlue: #e8f1fd;
+  --color-DavysGrey: #585858;
+  --color-MistyRose: #ffe8e8;
+  --color-LightGray: #cdd1d7;
+  --color-OceanGreen: #4cbd97;
+  --color-BlackOlive: #3c3c3c;
+  --color-YellowRose: #fff000;
+  --color-GhostWhite: #f9fafb;
+  --color-MaximumRed: #dc2626;
+  --color-BrightGray: #efefef;
+  --color-GraniteGray: #646464;
+  --color-LightSilver: #d1d5db;
+  --color-CarminePink: #ef4444;
+  --color-FloralWhite: #fcf8f1;
+  --color-LavenderBlue: #c2deff;
+  --color-BabyBlueEyes: #9bc8ff;
+  --color-CetaceanBlue: #04103b;
+  --color-BrightYellow: #f9a41a;
+  --color-GhostWhite-1: #fafcff;
+  --color-LightSilver2: #d9d9d9;
+  --color-VividCerulean: #0ea5e9;
+  --color-MetallicSilver: #a2a8b4;
+  --color-MetallicYellow: #ffce07;
+  --color-SunsetOrange-1: #f15858;
+  --color-SunsetOrange-2: #f25757;
+  --color-AuroMetalSaurus: #6b7280;
+  --color-CetaceanBlue2: #04103b0d;
+  --color-CharlestonGreen-1: #252733;
+  --color-CharlestonGreen-2: #333125;
+  --color-PaleCornflowerBlue: #aed2ff;
+  --color-CyanCornflowerBlue: #1f88c9;
+  --color-Argent: #bfbfbf;
+  --color-FleshPink: #ffccc7;
+  --color-DarkWashedRed: #ff4d4f;
+
+  --color-CadetGreyRGB: 156, 163, 175;
+
+  --color-Platinum-OP-20: rgba(223, 224, 235, 0.2);
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: calc(100% - 84px);
+  scroll-behavior: smooth;
+  background-color: var(--color-Cultured);
+}
+
+#root,
+.app-layout,
+.app-layout-full {
+  height: 100%;
+  width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+main {
+  margin: 0 auto;
+  min-height: 100%;
+  margin-top: 84px;
+  overflow: auto;
+}
+
+input,
+button {
+  font-family: var(--font-secondary);
+}
+
+button {
+  text-align: left;
+  cursor: pointer;
+}
+
+.app-layout main,
+.app-layout-full main {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  background-color: var(--color-White);
+}
+
+.app-layout main {
+  max-width: 1200px;
+}
+
+.app-layout-full main {
+  max-width: 1440px;
+}
+
+.tippy-tooltip {
+  background-color: var(--color-AuroMetalSaurus) !important;
+  border-radius: 6px !important;
+}
+
+.tippy-popper[x-placement^="bottom"] [x-arrow] {
+  border-bottom: 7px solid var(--color-AuroMetalSaurus) !important;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    height: 100%;
+  }
+
+  main {
+    padding-top: 66px;
+    margin-top: 0;
+    height: 100%;
+  }
+}

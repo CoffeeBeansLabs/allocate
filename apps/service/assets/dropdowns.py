@@ -1,0 +1,6 @@
+MODELS = ('MacBook Pro', 'MacBook Air', 'HP', 'Lenovo', 'Dell', 'Legion')
+TYPES = ('Laptop', 'Mobile', 'Tablet', 'Monitor')
+BRANDS = ('Apple', 'HP', 'Lenovo', 'Dell')
+RAMS = ('4 GB', '8 GB', '12 GB', '16 GB', '32 GB', '64 GB')
+SCREENS = ('8 inch', '11 inch', '12 inch', '13 inch', '14 inch', '15 inch', '16 inch', '17 inch')
+LEASING_COMPANY = ('Orix',)

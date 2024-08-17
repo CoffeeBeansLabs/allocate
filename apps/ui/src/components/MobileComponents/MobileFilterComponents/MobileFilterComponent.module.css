@@ -1,0 +1,51 @@
+.searchModal {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  gap: 40px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: visible;
+  gap: 0 !important;
+}
+
+.projectStatus {
+  font-size: 14px;
+  font-weight: 500;
+  padding-left: 4px;
+  padding-bottom: 8px;
+  display: inline-block;
+  font-family: var(--font-secondary);
+  color: var(--color-CharlestonGreen-1);
+}
+
+.heading {
+  margin-left: 15px;
+}
+
+.dateContainer {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.errorMessage {
+  color: red;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -30px;
+  margin-bottom: -10px;
+}
+
+.iconImage {
+  width: 18px;
+  height: 18px;
+}
+
+.sortingContainer {
+  margin-left: 15px;
+  margin-right: 15px;
+}
