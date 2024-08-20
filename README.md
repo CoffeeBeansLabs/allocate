@@ -89,3 +89,4 @@ docker compose up
 Please see our [contributing guide](/CONTRIBUTING.md).
 
 ## License
+[MIT License](/LICENSE)
