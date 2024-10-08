@@ -24,8 +24,9 @@ const FormikInput = forwardRef(
 
     return (
       <div className={cx([styles.inputContainer, { invalid: isError }])}>
-        <label className={styles.inputLabel}>{label}</label>
-
+        <label className={cx([styles.inputLabel, { [styles.errorMessage]: isError }])}>
+          {label}
+        </label>
         {variant === "date" ? (
           <Calendar
             ref={ref}

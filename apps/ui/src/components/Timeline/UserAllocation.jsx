@@ -2,7 +2,6 @@ import { View } from "@allocate-core/ui-components";
 import {
   getAllocationsRange,
   getDateStartCol,
-  getHeightValues,
   getLeavesRange,
   MAX_UTILIZATION,
 } from "@allocate-core/util-data-values";
@@ -12,6 +11,7 @@ import React from "react";
 
 import {
   CURRENT_PROJECT,
+  KT_PERIOD_BG_IMAGE,
   NOT_ACTIVE_BG_IMAGE,
   ON_LEAVE,
   OTHER_PROJECT,
@@ -19,7 +19,6 @@ import {
   REQUEST_BG_IMAGE,
   TALENT_AVAILABLE,
 } from "../../constants/timelineColors";
-import styles from "./timeline.module.css";
 import TimelineRow from "./TimelineRow";
 import TimelineRowPartial from "./TimelineRowPartial";
 import ZeroAllocation from "./ZeroAllocation";
@@ -103,7 +102,7 @@ const getConsolidatedProjects = (user, type) => {
         projectName: request?.projectName,
       }))
     : [];
-  return [...user[type], ...userRequests];
+  return [...(Array.isArray(user[type]) ? user[type] : []), ...userRequests];
 };
 
 const getProjectsTotalUtilization = (projects) => {
@@ -217,10 +216,14 @@ const generateAllocationRowsForTimeRange = ({
     switch (rowType) {
       case "KT_PERIOD":
         return (
-          <View
+          <TimelineRowPartial
             key={key}
-            className={styles.ktPeriod}
-            style={{ ...getHeightValues(project.utilization) }}
+            backgroundColor="none"
+            backgroundImage={KT_PERIOD_BG_IMAGE}
+            projectData={project}
+            hideTooltip={false}
+            available={false}
+            zIndexDiff={zIndexDiff}
           />
         );
       case "REQUEST":
@@ -254,7 +257,7 @@ const generateAllocationRowsForTimeRange = ({
             backgroundColor={TALENT_AVAILABLE}
             projectData={{
               ...project,
-              utilization: MAX_UTILIZATION - project.utilization,
+              utilization: MAX_UTILIZATION - overallAllocation,
             }}
             hideTooltip={false}
             available={true}
@@ -263,22 +266,24 @@ const generateAllocationRowsForTimeRange = ({
         );
     }
   };
+  let currentTotalAllocation = 0;
 
   return allocation.projects.flatMap((project, proIdx) => {
-    if (!project.utilization || !project.startDate) return [];
+    const rows = [];
 
-    if (project.type === "ktPeriod") {
-      return [createRow(project, proIdx, "KT_PERIOD")];
-    }
+    if (project.utilization && project.startDate) {
+      currentTotalAllocation += project.utilization;
 
-    if (project.isRequest) {
-      return [createRow(project, proIdx, "REQUEST")];
-    }
+      if (project.type) {
+        rows.push([createRow(project, proIdx, project.type)]);
+      }
 
-    const rows = [createRow(project, proIdx, "PROJECT")];
-
-    if (overallAllocation < MAX_UTILIZATION) {
-      rows.push(createRow(project, proIdx, "UNALLOCATED"));
+      if (
+        overallAllocation < MAX_UTILIZATION &&
+        currentTotalAllocation === overallAllocation
+      ) {
+        rows.push(createRow(project, proIdx, "UNALLOCATED"));
+      }
     }
 
     return rows;
@@ -312,7 +317,10 @@ const generateStartEndRows = ({
     );
   }
 
-  if (maxColumnCovered > 0 && maxColumnCovered < numberOfColumns) {
+  if (
+    (maxColumnCovered > 0 || user?.lastWorkingDay) &&
+    maxColumnCovered < numberOfColumns
+  ) {
     if (user?.lastWorkingDay && isEqual(lwdMonth, currentMonthStartDate)) {
       if (lwdStartCol + 1 > maxColumnCovered) {
         rowsEnd = [

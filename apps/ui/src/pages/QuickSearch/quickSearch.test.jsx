@@ -73,9 +73,12 @@ describe("quick search", () => {
     expect(screen.queryAllByText(/skillset \*/i)).toHaveLength(2);
   });
 
-  test.skip("should have dropdown values", async () => {
+  test("should have dropdown values", async () => {
     authenticatedAxiosMock.onGet("/user/get-user-countries").reply(200, {
       countries: ["United States"],
+    });
+    authenticatedAxiosMock.onGet("/projects/").reply(200, {
+      projects: [],
     });
     authenticatedAxiosMock.onGet("/projects/position-dropdowns/").reply(200, {
       dropdowns: {
@@ -90,10 +93,11 @@ describe("quick search", () => {
         <QuickSearch />
       </BrowserRouter>,
     );
-    const rolesDropdown = await screen.findByRole("combobox", { name: /role/i });
-    expect(rolesDropdown).toBeInTheDocument();
-    const skillsDropdown = await screen.findByRole("combobox", { name: /skills/i });
-    expect(skillsDropdown).toBeInTheDocument();
+    const dropdowns = await screen.findAllByAltText(/click to toggle dropdown menu/i);
+    await user.click(dropdowns[0]);
+    expect(screen.queryByText(/test role/i)).toBeInTheDocument();
+    await user.click(dropdowns[1]);
+    expect(screen.queryByText(/test skill/i)).toBeInTheDocument();
   });
 
   test("should validate required on submit", async () => {
@@ -125,11 +129,13 @@ describe("quick search", () => {
     expect(screen.queryAllByText(/minimum is 5/i)).toHaveLength(availabilityInput.length);
   });
 
-  test.skip("should store data in local storage", async () => {
+  test("should store data in local storage", async () => {
     authenticatedAxiosMock.onGet("/user/get-user-countries").reply(200, {
       countries: ["United States"],
     });
-
+    authenticatedAxiosMock.onGet("/projects/").reply(200, {
+      projects: [],
+    });
     authenticatedAxiosMock.onGet("/projects/position-dropdowns/").reply(200, {
       dropdowns: {
         roles: [],
@@ -137,6 +143,12 @@ describe("quick search", () => {
         location: [],
       },
     });
+    authenticatedAxiosMock
+      .onGet("/user/get-user-cities/?countries=United%20States")
+      .reply(200, {
+        cities: ["usa"],
+      });
+
     render(
       <BrowserRouter>
         <QuickSearch />
@@ -148,10 +160,11 @@ describe("quick search", () => {
       /click to toggle dropdown menu/i,
     );
     await user.click(filterDropdowns[1]);
-    await user.click(screen.queryAllByText(/test skill/i)[0]);
+    await user.click(screen.queryByText(/test skill/i));
     await user.click(filterDropdowns[6]);
-
-    await user.click(screen.getByText(/united states/i));
+    await user.click(screen.queryByText(/united states/i));
+    await user.click(filterDropdowns[7]);
+    await user.click(screen.queryByText(/usa/i));
     await user.click(screen.queryByRole("button", { name: /search/i }));
 
     expect(localStorageMock.setItem).toHaveBeenCalledWith(
@@ -168,8 +181,8 @@ describe("quick search", () => {
           },
         ],
         projects: [],
-        country: { value: "United States", label: "United States" },
-        locations: [],
+        country: [{ value: "United States", label: "United States" }],
+        city: [[{ value: "Usa", label: "Usa" }]],
       }),
     );
   });

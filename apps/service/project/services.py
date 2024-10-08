@@ -200,14 +200,14 @@ class ProjectAllocationService:
                 raise InvalidRequest({
                     ResponseKeys.ROW: index + 1,
                     ResponseKeys.MESSAGE: ErrorMessages.POSITION_START_DATE_IS_BEFORE_PROJECT_START_DATE,
-                    ResponseKeys.CODE: InvalidRequest.default_code})         
+                    ResponseKeys.CODE: InvalidRequest.default_code})
             if position_end_date is None:
                 if project_end_date is None:
                     position_end_date = project_start_date + \
                         datetime.timedelta(days=180)
-                else :
-                    position_end_date=project_end_date
-            if  (project_end_date and position_end_date) and position_end_date > project_end_date:
+                else:
+                    position_end_date = project_end_date
+            if (project_end_date and position_end_date) and position_end_date > project_end_date:
                 raise InvalidRequest({
                     ResponseKeys.ROW: index + 1,
                     ResponseKeys.MESSAGE: ErrorMessages.POSITION_DATE_IS_BEYOND_PROJECT_END_DATE,
@@ -316,12 +316,12 @@ class ProjectAllocationService:
         project = position.project_role.project
         user = data.get(RequestKeys.USER)
 
+        if not end_date:
+            end_date = position.end_date
+
         if user.last_working_day and user.last_working_day < end_date:
             raise InvalidRequest(
                 ErrorMessages.USER_WILL_NOT_BE_AVAILABLE_TILL_GIVEN_DATE)
-
-        if not end_date:
-            end_date = position.end_date
 
         if start_date > end_date:
             raise InvalidRequest(
@@ -353,11 +353,10 @@ class ProjectAllocationService:
             raise InvalidRequest(
                 ErrorMessages.TALENT_IS_ALREADY_ALLOCATED_TO_ROLE)
 
-        if position.end_date:
-            if not (position.start_date <= start_date <= position.end_date and
-                    position.start_date <= end_date <= position.end_date) and position.end_date:
-                raise InvalidRequest(
-                    ErrorMessages.ALLOCATION_IS_BEYOND_POSITION_DATE_RANGE)
+        if position.end_date and not (position.start_date <= start_date <= position.end_date and
+                                      position.start_date <= end_date <= position.end_date) and position.end_date:
+            raise InvalidRequest(
+                ErrorMessages.ALLOCATION_IS_BEYOND_POSITION_DATE_RANGE)
         data[RequestKeys.END_DATE] = end_date
 
         return data
@@ -464,10 +463,20 @@ class ProjectAllocationService:
         data[RequestKeys.TENTATIVE] = project.status in [
             Project.Status.COLD, Project.Status.HOT, Project.Status.WARM]
 
-        project_allocation = ProjectAllocation.objects.filter(Q(position_id=position.id), ~Q(user=user), ~(
+        project_other_user_allocation = ProjectAllocation.objects.filter(Q(position_id=position.id), ~Q(user=user), ~(
             Q(end_date__lt=datetime.date.today()) | Q(start_date__gt=end_date)))
 
-        if project_allocation.exists():
+        project_same_user_allocation = ProjectAllocation.objects.filter(Q(position_id=position.id),
+                                                                        ~Q(id=allocation_id), Q(
+                                                                            user=user),
+                                                                        Q(start_date__lte=end_date),
+                                                                        Q(end_date__gte=end_date))
+
+        if project_same_user_allocation.exists():
+            raise InvalidRequest(
+                ErrorMessages.TALENT_IS_ALREADY_ALLOCATED_DURING_THE_PERIOD)
+
+        if project_other_user_allocation.exists():
             raise InvalidRequest(
                 ErrorMessages.OTHER_TALENT_IS_ALREADY_ALLOCATED_IN_GIVEN_DATE_RANGE)
 

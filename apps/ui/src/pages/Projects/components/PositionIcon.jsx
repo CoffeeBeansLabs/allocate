@@ -35,10 +35,8 @@ const getFilledDays = (users = [], positionId) => {
     let days = 0;
     user.projects.map((proj) => {
       if (proj.isSameProject && proj.positionId === positionId) {
-        days += Math.max(
-          differenceInDays(new Date(proj.endDate), new Date(proj.startDate)) + 1 || 0,
-          days,
-        );
+        days +=
+          differenceInDays(new Date(proj.endDate), new Date(proj.startDate)) + 1 || 0;
       }
     });
     filledDays += days;
@@ -53,7 +51,7 @@ const PositionIcon = ({ positionData }) => {
     differenceInDays(new Date(positionData?.endDate), new Date(positionData?.startDate)) +
     1;
   const filledPositionDays = getFilledDays(positionData?.users, positionData?.id);
-  const positionUnfilled = Math.ceil(
+  const positionUnfilled = Math.round(
     ((totalPositionDays - filledPositionDays) / totalPositionDays) * 100,
   );
 

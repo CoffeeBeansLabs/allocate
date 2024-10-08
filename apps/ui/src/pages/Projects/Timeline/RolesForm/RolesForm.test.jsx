@@ -8,7 +8,7 @@ import AuthenticatedAPI from "../../../../api/API";
 import { useAuthStore } from "../../../../store/authStore";
 import RolesForm from ".";
 
-describe("Add to Project Form", () => {
+describe("Roles Form", () => {
   const user = userEvent.setup();
   let authenticatedAxiosMock;
 
@@ -22,6 +22,7 @@ describe("Add to Project Form", () => {
         experienceRangeEnd: 8,
         utilization: 100,
         startDate: formatISO(setDate(new Date(), 10), { representation: "date" }),
+        isBillable: false,
       },
     ],
   };
@@ -106,6 +107,14 @@ describe("Add to Project Form", () => {
     await user.click(screen.getByText(/14/i));
 
     await user.type(screen.getByPlaceholderText(/enter utilization/i), "100");
+    expect(screen.queryAllByText(/select billing status/i)).not.toHaveLength(0);
+
+    const billingStatusDropdowns = screen.getAllByText(/select billing status/i);
+    expect(billingStatusDropdowns[0]).toBeInTheDocument();
+
+    await user.click(billingStatusDropdowns[0]);
+    await user.click(screen.getByText(/non billable/i));
+
     await user.click(screen.getByRole("button", { name: /save/i }));
 
     expect(authenticatedAxiosMock.history.post).toHaveLength(1);
@@ -209,7 +218,20 @@ describe("Add to Project Form", () => {
     await user.click(screen.getAllByPlaceholderText(/select date/i)[0]);
     await user.click(screen.getByText(/14/i));
 
-    await user.type(screen.getAllByPlaceholderText(/enter utilization/i)[0], "100");
+    const utilizationFields = screen.getAllByPlaceholderText(/enter utilization/i);
+    expect(utilizationFields).not.toHaveLength(0);
+    expect(utilizationFields[0]).toBeInTheDocument();
+
+    await user.type(utilizationFields[0], "100");
+
+    expect(screen.queryAllByText(/select billing status/i)).not.toHaveLength(0);
+
+    const billingStatusDropdowns = screen.getAllByText(/select billing status/i);
+    expect(billingStatusDropdowns[0]).toBeInTheDocument();
+
+    await user.click(billingStatusDropdowns[0]);
+    await user.click(screen.getByText(/non billable/i));
+
     expect(screen.getAllByRole("button", { name: /save/i })[0]).toBeEnabled();
     await user.click(screen.getAllByRole("button", { name: /save/i })[0]);
     expect(authenticatedAxiosMock.history.post).toHaveLength(1);

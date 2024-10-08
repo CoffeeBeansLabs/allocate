@@ -392,8 +392,7 @@ class AddProjectPositionTests(BaseTestCase):
         client = Client.objects.create(
             name='Test', city='Bangalore', country='India', start_date='2020-01-10')
         cls.project = Project.objects.create(name='Test', status=Project.Status.HOT, city='Bangalore', country='India',
-                                             client=client, start_date='2023-05-01', end_date='2026-05-01')  # Make sure the position start dates and end dates defined in the below test cases are in between the project date range.
-
+                                             client=client, start_date='2023-05-01', end_date='2026-05-01')
         cls.role, _ = Role.objects.get_or_create(name='Role')
         cls.skill1, _ = Skill.objects.get_or_create(name='Skill 1')
         cls.skill2, _ = Skill.objects.get_or_create(name='Skill 2')
@@ -1539,6 +1538,34 @@ class EditProjectAllocationTest(BaseTestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(
             response.data['detail'], ErrorMessages.OTHER_TALENT_IS_ALREADY_ALLOCATED_IN_GIVEN_DATE_RANGE)
+
+    @patch('project.services.datetime')
+    @patch('project.serializers.datetime')
+    def test_talent_already_allocated_during_the_period(self,  datetime_mock_serializer, datetime_mock_service):
+        self.client.force_authenticate(user=self.user)
+        datetime_mock_service.date.today.return_value = date(2023, 2, 28)
+        datetime_mock_service.timedelta = timedelta
+
+        datetime_mock_serializer.date.today.return_value = date(2023, 2, 28)
+        datetime_mock_serializer.timedelta = timedelta
+        url = reverse('v1:project:project-allocation-detail',
+                      kwargs={'allocation_id': self.allocation.id})
+
+        ProjectAllocation.objects.create(user=self.user, position=self.position,
+                                         utilization=60,
+                                         start_date="2023-01-26",
+                                         end_date="2023-05-20", kt_period=10)
+        data = {
+            "user": self.user.id,
+            "utilization": 40,
+            "end_date": "2023-05-20",
+        }
+        response = self.client.put(url, data, format='json')
+        self.allocation.refresh_from_db()
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(
+            response.data['detail'], ErrorMessages.TALENT_IS_ALREADY_ALLOCATED_DURING_THE_PERIOD)
 
 
 class EditProjectAllocationRequestTest(BaseTestCase):

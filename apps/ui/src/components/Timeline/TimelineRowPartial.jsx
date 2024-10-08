@@ -60,6 +60,7 @@ const TimelineRowPartial = (props) => {
       }
     >
       <View
+        data-testid={available ? "available" : `${projectData.type}`}
         className={`${styles.timelineIndicatorBar} ${isOverAllocated ? styles.overAllocated : ""}`}
         style={{
           ...heightValues,
@@ -78,6 +79,7 @@ TimelineRowPartial.propTypes = {
   zIndexDiff: PropTypes.number,
   projectData: PropTypes.shape({
     utilization: PropTypes.number,
+    type: PropTypes.oneOf(["KT_PERIOD", "REQUEST", "PROJECT"]),
   }),
   backgroundColor: PropTypes.string,
   backgroundImage: PropTypes.string,

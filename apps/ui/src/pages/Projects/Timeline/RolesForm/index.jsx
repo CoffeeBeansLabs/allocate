@@ -52,10 +52,16 @@ const validationSchema = Yup.object().shape({
         )
         .nullable(),
       utilization: Yup.number()
+        .typeError("Utilization must be a whole number")
+        .integer("Utilization must be an integer")
         .required("Required")
         .min(5, "Minimum is  5")
         .max(100, "Maximum is 100"),
-      isBillable: Yup.object(),
+      isBillable: Yup.mixed()
+        .test("is-valid-billable", "Required", function (value) {
+          return value && (typeof value === "object" || value === "");
+        })
+        .required("Required"),
     }),
   ),
 });
@@ -75,8 +81,8 @@ const RolesForm = ({
     roles: [],
     skills: [],
     billingStatus: [
-      { label: "Non Billable", value: 0 },
-      { label: "Billable", value: 1 },
+      { label: "Non Billable", value: false },
+      { label: "Billable", value: true },
     ],
     yoeFrom: getIntegerOptions(0, 30, 1),
     yoeTo: getIntegerOptions(0, 30, 1),
@@ -105,10 +111,13 @@ const RolesForm = ({
         startDate: new Date(pos?.startDate),
         endDate: pos?.endDate ? new Date(pos?.endDate) : null,
         utilization: pos?.utilization,
-        isBillable: {
-          label: pos?.isBillable ? "Billable" : "Non Billable",
-          value: pos?.isBillable,
-        },
+        isBillable:
+          pos?.isBillable !== ""
+            ? {
+                label: pos?.isBillable ? "Billable" : "Non Billable",
+                value: pos?.isBillable,
+              }
+            : "",
       }));
     },
     [mapSkills],
