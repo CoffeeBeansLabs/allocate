@@ -174,3 +174,8 @@ For detailed technical documentation, including in-depth information about the p
 ## Contributing
 
 Please see our [contributing guide](/CONTRIBUTING.md).
+
+
+## License
+  
+[MIT License](/LICENSE)
