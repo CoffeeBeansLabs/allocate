@@ -197,18 +197,6 @@
   border-radius: 3px;
 }
 
-.ktPeriod {
-  z-index: 4;
-  width: 100%;
-  background-image: repeating-linear-gradient(
-    120deg,
-    var(--color-White),
-    var(--color-White) 4px,
-    var(--color-DavysGrey) 4px,
-    var(--color-DavysGrey) 6px
-  );
-}
-
 .timelineRowWrapper {
   display: grid;
   width: 100%;

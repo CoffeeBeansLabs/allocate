@@ -19,3 +19,14 @@ export const notificationRead = async (notificationId) => {
     return Promise.reject(error.response);
   }
 };
+
+export const markAllNotificationsAsRead = async () => {
+  try {
+    const response = await AuthenticatedAPI.patch(
+      `/projects/notification/mark-all-read/`,
+    );
+    return Promise.resolve(response.data);
+  } catch (error) {
+    return Promise.reject(error.response);
+  }
+};

@@ -194,7 +194,7 @@ export const getAllocationsRange = (allocations = [], currentMonth) => {
             ) {
               projects.push({
                 ...project,
-                type: "project",
+                type: project.isRequest ? "REQUEST" : "PROJECT",
               });
               allocation += project.utilization;
             }

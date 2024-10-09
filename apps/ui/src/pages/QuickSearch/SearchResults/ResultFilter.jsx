@@ -1,4 +1,5 @@
 import { FormikInput, FormikReactSelect } from "@allocate-core/ui-components";
+import { blockInvalidNumberInput } from "@allocate-core/util-data-values";
 import { startOfDay } from "date-fns";
 import { Form, Formik } from "formik";
 import React, { useEffect } from "react";
@@ -112,6 +113,7 @@ const ResultFilter = ({ handleChange }) => {
                     min="5"
                     max="100"
                     step="5"
+                    onKeyDown={blockInvalidNumberInput}
                     onChange={(value) => {
                       setFieldValue("position.utilization", value || "", true);
                       handleChange("utilization", value || "");
@@ -176,6 +178,7 @@ const ResultFilter = ({ handleChange }) => {
                   min="5"
                   max="100"
                   step="5"
+                  onKeyDown={blockInvalidNumberInput}
                   onChange={(value) => {
                     setFieldValue("position.utilization", value || "", true);
                     handleChange("utilization", value || "");

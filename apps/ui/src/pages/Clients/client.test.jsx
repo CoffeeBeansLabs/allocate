@@ -1,8 +1,10 @@
 import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import MockAdapter from "axios-mock-adapter";
 import { BrowserRouter } from "react-router-dom";
 import { afterEach, describe, expect, test, vi } from "vitest";
 
+import AuthenticatedAPI from "../../api/API";
 import { useAuthStore } from "../../store/authStore";
 import Clients from ".";
 import ClientForm from "./ClientForm";
@@ -11,7 +13,19 @@ import ClientViewDetails from "./ViewDetails";
 afterEach(cleanup);
 
 describe("Clients", () => {
+  let authenticatedAxiosMock;
+  const user = userEvent.setup();
   useAuthStore.setState({ user: { roles: ["admin"] } });
+
+  beforeEach(() => {
+    authenticatedAxiosMock = new MockAdapter(AuthenticatedAPI);
+  });
+
+  afterEach(() => {
+    authenticatedAxiosMock.reset();
+    authenticatedAxiosMock.resetHistory();
+  });
+
   const IntersectionObserverMock = vi.fn(() => ({
     disconnect: vi.fn(),
     observe: vi.fn(),
@@ -40,7 +54,6 @@ describe("Clients", () => {
   });
 
   test("should open modal on click add new client", async () => {
-    const user = userEvent.setup();
     render(
       <BrowserRouter>
         <Clients />
@@ -57,7 +70,6 @@ describe("Clients", () => {
   });
 
   test("should expand client form to show additional detail form", async () => {
-    const user = userEvent.setup();
     render(<ClientForm />);
     await user.click(await screen.findByRole("button", { name: /add more details/i }));
 
@@ -67,7 +79,6 @@ describe("Clients", () => {
   });
 
   test("should throw error on submit with no change", async () => {
-    const user = userEvent.setup();
     render(<ClientForm type="add" />);
     const submitBtn = await screen.findByRole("button", { name: /add client/i });
 
@@ -80,7 +91,6 @@ describe("Clients", () => {
   });
 
   test("should not show error when input is changed on submit", async () => {
-    const user = userEvent.setup();
     render(<ClientForm type="add" />);
     const submitBtn = await screen.findByRole("button", { name: /add client/i });
     const clientName = await screen.findByPlaceholderText("Enter here");
@@ -94,11 +104,65 @@ describe("Clients", () => {
   });
 
   test("should render editable form", async () => {
-    render(<ClientForm type="edit" />);
+    authenticatedAxiosMock.onGet("/clients/creation-dropdowns/").reply(200, {
+      dropdowns: {
+        accountManagers: [{ id: 1, fullNameWithExpBand: "Test Manager" }],
+        industries: [{ id: 1, name: "Test Industry" }],
+        status: [{ id: "ACTIVE", name: "Active" }],
+      },
+    });
+    const mockData = {
+      name: "Test Client",
+      status: "ACTIVE",
+      industry: { id: 1 },
+      accountManager: { id: 1 },
+      pocs: [
+        {
+          name: "Test POC",
+        },
+      ],
+    };
+    render(<ClientForm type="edit" data={mockData} />);
     expect(
       await screen.findByRole("button", { name: /save changes/i }),
-    ).toBeInTheDocument(),
-      expect(() => screen.getByRole("button", { name: /add more details/i })).toThrow();
+    ).toBeInTheDocument();
+    expect(await screen.findByPlaceholderText(/enter here/i)).toHaveValue("Test Client");
+    expect(screen.queryByText("Test Industry")).toBeInTheDocument();
+    expect(screen.queryByText("Active")).toBeInTheDocument();
+    expect(screen.queryByText("Test Manager")).toBeInTheDocument();
+    expect(screen.queryAllByPlaceholderText(/enter name/i)[0]).toHaveValue("Test POC");
+    expect(() => screen.getByRole("button", { name: /add more details/i })).toThrow();
+  });
+
+  test("should update form on saving edit changes", async () => {
+    authenticatedAxiosMock.onGet("/clients/creation-dropdowns/").reply(200, {
+      dropdowns: {
+        accountManagers: [],
+        industries: [{ id: 1, name: "Test Industry" }],
+        status: [{ id: "ACTIVE", name: "Active" }],
+      },
+    });
+    authenticatedAxiosMock.onPut("/clients/1/").reply(200);
+    const mockData = {
+      id: 1,
+      name: "Test Client",
+      status: "ACTIVE",
+      industry: { id: 1 },
+      country: "Country",
+      city: "City",
+      startDate: "2020-01-10",
+      pocs: [
+        {
+          name: "Test POC",
+          email: "test@example.com",
+        },
+      ],
+    };
+    render(<ClientForm type="edit" data={mockData} />);
+    const saveBtn = await screen.findByRole("button", { name: /save changes/i });
+    await user.click(saveBtn);
+    expect(authenticatedAxiosMock.history.put).toHaveLength(1);
+    expect(authenticatedAxiosMock.history.put[0].url).toBe("/clients/1/");
   });
 
   test("should render details page", async () => {
@@ -118,7 +182,6 @@ describe("Clients", () => {
   });
 
   test("should open modal on click edit client", async () => {
-    const user = userEvent.setup();
     render(
       <BrowserRouter>
         <ClientViewDetails />

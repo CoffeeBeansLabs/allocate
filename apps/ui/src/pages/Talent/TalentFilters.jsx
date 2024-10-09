@@ -4,6 +4,7 @@ import {
   Input,
   ReactSelect,
 } from "@allocate-core/ui-components";
+import { blockInvalidNumberInput } from "@allocate-core/util-data-values";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 
@@ -126,6 +127,7 @@ const TalentFilter = ({
             max="100"
             min="0"
             step="5"
+            onKeyDown={blockInvalidNumberInput}
             onChange={(e) => {
               setFilters({ availability: e.target.value });
               handleChange(searchValue, { ...filters, availability: e.target.value });
@@ -176,6 +178,7 @@ const TalentFilter = ({
           min="0"
           step="5"
           value={filters.availability}
+          onKeyDown={blockInvalidNumberInput}
           onChange={(e) => {
             setFilters({ availability: e.target.value });
             handleChange(searchValue, { ...filters, availability: e.target.value });

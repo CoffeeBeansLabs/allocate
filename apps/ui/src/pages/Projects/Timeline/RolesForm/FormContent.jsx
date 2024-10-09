@@ -41,6 +41,11 @@ export const FormContent = ({
 
   const handleChange = (name, value, index) => {
     setFieldValue(name, value);
+
+    if (name.endsWith("isBillable")) {
+      setFieldValue(name, value ? { value: value.value, label: value.label } : "");
+    }
+
     setFieldValue(`positions.${index}.saveIsEnabled`, true);
   };
 
@@ -53,7 +58,7 @@ export const FormContent = ({
       startDate: "",
       endDate: "",
       utilization: "",
-      isBillable: true,
+      isBillable: "",
       saveIsEnabled: true,
     });
   };
@@ -117,17 +122,15 @@ export const FormContent = ({
           };
 
           const removePositionByIndex = (index) => {
-            form.setFieldValue(
-              "positions",
-              values.positions.filter((_, idx) => idx !== index),
-            );
+            const newPositions = values.positions.filter((_, idx) => idx !== index);
+            form.setFieldValue("positions", newPositions);
           };
 
           const removePositionById = (positionId) => {
-            form.setFieldValue(
-              "positions",
-              values.positions.filter((position) => position?.id !== positionId),
+            const newPositions = values.positions.filter(
+              (position) => position?.id !== positionId,
             );
+            form.setFieldValue("positions", newPositions);
           };
 
           const isDisabled = (index) =>
@@ -165,7 +168,7 @@ export const FormContent = ({
                   <div
                     className={`gap-10 ${
                       type === "edit" ? "flex align-items-end" : "flex-center"
-                    } ${isMobile ? "row" : undefined}`}
+                    } ${isMobile ? "row" : ""}`}
                   >
                     <div className="col-xl-3 px-0">
                       <FormikReactSelect
@@ -312,7 +315,7 @@ export const FormContent = ({
                         />
                       </div>
                     </div>
-                    <div className={isMobile ? "col-xl-12 px-0" : undefined}>
+                    <div className={isMobile ? "col-xl-12 px-0" : ""}>
                       <FormikInput
                         required
                         name={`positions.${index}.utilization`}

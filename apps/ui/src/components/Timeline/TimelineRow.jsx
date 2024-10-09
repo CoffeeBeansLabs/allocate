@@ -21,10 +21,21 @@ const TimelineRow = (props) => {
     backgroundImage = "none",
     style,
   } = props;
+
   const heightValues = getHeightValues(projectData.utilization);
+  let testId = null;
+
+  if (available) {
+    if (backgroundImage !== "none") {
+      testId = "inactive";
+    } else {
+      testId = "available";
+    }
+  }
 
   return (
     <View
+      data-testid={testId}
       className={styles.timelineIndicatorBar}
       style={{
         ...heightValues,

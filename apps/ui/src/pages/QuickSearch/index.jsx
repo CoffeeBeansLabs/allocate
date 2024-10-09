@@ -7,6 +7,7 @@ import {
   Spinner,
   Text,
 } from "@allocate-core/ui-components";
+import { blockInvalidNumberInput } from "@allocate-core/util-data-values";
 import { FieldArray, Form, Formik } from "formik";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -42,7 +43,6 @@ const quickSearchFields = {
   ],
   projects: [],
   country: [],
-  locations: [],
   city: [[]],
 };
 
@@ -191,7 +191,6 @@ const QuickSearch = () => {
               utilization: "",
               country: [],
               city: [[]],
-              locations: [],
             });
             const updatedCity = [...values.city, []];
             setFieldValue("city", updatedCity);
@@ -283,6 +282,7 @@ const QuickSearch = () => {
                               min="5"
                               max="100"
                               step="5"
+                              onKeyDown={blockInvalidNumberInput}
                             />
                           </div>
                         </div>
@@ -340,6 +340,7 @@ const QuickSearch = () => {
                             min="5"
                             max="100"
                             step="5"
+                            onKeyDown={blockInvalidNumberInput}
                           />
                         </div>
                         <div

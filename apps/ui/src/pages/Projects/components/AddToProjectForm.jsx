@@ -55,8 +55,6 @@ const AddToProjectForm = ({
 
   const handleSubmit = (values) => {
     const { allocation = [] } = user || {};
-    console.log("criteria: ", criteria);
-    console.log("allocation: ", allocation);
     const { projectName, role, utilization } = criteria;
     const positionId = parseInt(params.positionId);
     const valueAssignedToTalent = parseInt(values.utilization);
@@ -64,27 +62,22 @@ const AddToProjectForm = ({
     const currentAllocations = allocation.filter(
       (item) => new Date().getTime() < new Date(item.endDate).getTime(),
     );
-    console.log("currentAllocations: ", currentAllocations);
 
     const isTalentAllocatedToPosition = currentAllocations.some(
       (allocation) => allocation.positionId === positionId,
     );
-    console.log("isTalentAllocatedToPosition: ", isTalentAllocatedToPosition);
 
     const isTalentAllocatedToSameRole = currentAllocations.some(
       (allocation) =>
         allocation.projectName === projectName && allocation.positionRole.name === role,
     );
-    console.log("isTalentAllocatedToSameRole: ", isTalentAllocatedToSameRole);
 
     const currentUtilizationOfTalent = currentAllocations.reduce(
       (acc, currentValue) => acc + currentValue.utilization,
       0,
     );
-    console.log("currentUtilizationOfTalent: ", currentUtilizationOfTalent);
 
     const totalUtilizationOfTalent = valueAssignedToTalent + currentUtilizationOfTalent;
-    console.log("totalUtilizationOfTalent: ", totalUtilizationOfTalent);
 
     if (
       isTalentAllocatedToPosition ||

@@ -94,12 +94,32 @@
 .notificationContainer {
   z-index: 50;
   position: absolute;
-  padding: 25px 20px 10px 15px;
+  padding: 10px 10px 10px;
   top: 65px;
   right: 10%;
-  height: 310px;
-  width: 300px;
+}
+
+.markAsReadBtnContainer {
+  text-align: right;
+}
+
+.markAsReadText {
+  font-size: 0.875rem;
+  color: var(--color-Blueberry);
+  margin-bottom: 10px;
+  border: none;
+  background: none;
+}
+
+.disabled {
+  color: var(--color-CadetGrey);
+  cursor: unset;
+}
+
+.notificationsScroll {
   overflow: auto;
+  width: 350px;
+  height: 350px;
 }
 
 .messageContainer {

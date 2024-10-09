@@ -47,10 +47,12 @@ const projectFormFields = {
   remarks: "",
 };
 
-const phoneRegEx = /^[-+]?[0-9]+$/u;
+const phoneRegEx = /^[-+]?\d+$/u;
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required("Enter a name"),
+  name: Yup.string()
+    .required("Enter a name")
+    .max(100, "Ensure this field has no more than 100 characters."),
   client: Yup.object().required("Select client"),
   status: Yup.object().required("Select status"),
   city: Yup.object().required("Select city").nullable(),
@@ -62,14 +64,22 @@ const validationSchema = Yup.object().shape({
   engagementType: Yup.object(),
   remarks: Yup.string().max(250, "Maximum 250 characters").nullable(),
   pocs: Yup.object().shape({
-    name: Yup.string(),
+    name: Yup.string()
+      .when(["email", "phoneNumber", "designation"], {
+        is: (email, phoneNumber, designation) => email || phoneNumber || designation,
+        then: Yup.string().required("Name is required when adding POC details"),
+        otherwise: Yup.string(),
+      })
+      .max(100, "Ensure this field has no more than 100 characters."),
     email: Yup.string().email("Must be a valid email").nullable(),
     phoneNumber: Yup.string()
       .min(7, "Must be atleast 7 digits")
       .max(15, "Cannot be more than 15 digits")
       .matches(phoneRegEx, "Contains invalid phone number")
       .nullable(),
-    designation: Yup.string().nullable(),
+    designation: Yup.string()
+      .nullable()
+      .max(20, "Ensure this field has no more than 20 characters."),
   }),
   accountManager: Yup.object(),
 });
@@ -119,14 +129,14 @@ const ProjectForm = ({ type, data = {}, onSubmit, setFormDirty = () => {} }) => 
             currency: data?.currency
               ? { value: data?.currency, label: data?.currency }
               : undefined,
-            status: projectStatusOptions?.find(({ value }) => value == data?.status),
-            client: clientsOptions?.find(({ value }) => value == data?.client?.id),
+            status: projectStatusOptions?.find(({ value }) => value === data?.status),
+            client: clientsOptions?.find(({ value }) => value === data?.client?.id),
 
             engagementType: engagementTypesOptions?.find(
-              ({ label }) => label == data?.engagementType,
+              ({ label }) => label === data?.engagementType,
             ),
             deliveryMode: deliveryModesOptions?.find(
-              ({ label }) => label == data?.deliveryMode,
+              ({ label }) => label === data?.deliveryMode,
             ),
             pocs: {
               name: data?.pocName || "",
@@ -135,7 +145,7 @@ const ProjectForm = ({ type, data = {}, onSubmit, setFormDirty = () => {} }) => 
               designation: data?.pocDesignation || "",
             },
             accountManager: accountManagerOptions?.find(
-              ({ label }) => label == data?.accountManager,
+              ({ label }) => label === data?.accountManager,
             ),
             remarks: data?.comment || "",
           }));
@@ -192,7 +202,9 @@ const ProjectForm = ({ type, data = {}, onSubmit, setFormDirty = () => {} }) => 
       createProject(projectPayload)
         .then(onSubmit)
         .catch((response) => {
-          toast.error(JSON.stringify(response?.data.detail || response.data));
+          const [parsedErrorMessage] =
+            response?.data?.detail?.name || response?.data?.name || [];
+          toast.error(parsedErrorMessage);
         });
     }
   };

@@ -151,6 +151,10 @@
   margin-top: 16px;
 }
 
+.m10 {
+  margin: 10px;
+}
+
 .relative {
   position: relative;
 }

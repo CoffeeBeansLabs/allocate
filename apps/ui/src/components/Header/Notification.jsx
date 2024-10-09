@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import BellIcon from "/icons/bellIcon.svg";
 import CloseIconBlack from "/icons/closeIconBlack.svg";
 
-import { getNotifications, notificationRead } from "../../api/notifications";
+import { getNotifications, markAllNotificationsAsRead, notificationRead } from "../../api/notifications";
 import { isMobile } from "../../common/common";
 import { SCOPES } from "../../constants/roles";
 import { useAuthStore } from "../../store/authStore";
@@ -28,12 +28,12 @@ const requestNotificationMessage = (notification, messageWording) => {
   } = notification.jsonData;
 
   if (!requestsUtilization)
-    return `Date change (from ${previousEndDate} to ${requestsEndDate}) ${messageWording} by ${notification.sender?.fullName} for ${requestsUser}.`;
+    return `Date change (from ${previousEndDate} to ${requestsEndDate}) ${messageWording} by ${notification.sender?.fullNameWithExpBand} for ${requestsUser}.`;
 
   if (!requestsEndDate)
-    return `Allocation change (from ${previousUtilization} to ${requestsUtilization}) ${messageWording} by ${notification.sender?.fullName} for ${requestsUser}.`;
+    return `Allocation change (from ${previousUtilization} to ${requestsUtilization}) ${messageWording} by ${notification.sender?.fullNameWithExpBand} for ${requestsUser}.`;
 
-  return `Allocation change (from ${previousUtilization} to ${requestsUtilization}) & date changed (from ${previousEndDate} to ${requestsEndDate}) ${messageWording} by ${notification.sender?.fullName} for ${requestsUser}.`;
+  return `Allocation change (from ${previousUtilization} to ${requestsUtilization}) & date changed (from ${previousEndDate} to ${requestsEndDate}) ${messageWording} by ${notification.sender?.fullNameWithExpBand} for ${requestsUser}.`;
 };
 
 const formatNotifications = (notifications, userId) => {
@@ -110,7 +110,7 @@ const Notification = () => {
         .catch((errResponse) => toast.error(errResponse?.data?.detail));
   };
 
-  useEffect(fetchNotification, []);
+  useEffect(fetchNotification, [auth?.user?.id, hasPermissionToViewNotifs]);
   useInterval(fetchNotification, NOTIFICATION_INTERVAL);
 
   const handleNotificationRead = (id) => {
@@ -121,6 +121,15 @@ const Notification = () => {
       })
       .catch((errResponse) => toast.error(errResponse?.data.detail));
   };
+
+  const handleMarkAsReadButton = () => {
+    markAllNotificationsAsRead()
+      .then(fetchNotification)
+      .catch((errResponse) => toast.error(errResponse?.data.detail));
+  };
+
+  const allNotificationsSeen = notificationList.every((notif) => !notif.unseen);
+  const buttonClassName = `${styles.markAsReadText} ${allNotificationsSeen ? styles.disabled : ""}`;
 
   return (
     <div ref={notifRef}>
@@ -139,44 +148,64 @@ const Notification = () => {
         />
       </div>
       <div
-        data-testid="notification-container"
         className={`card-1 ${styles.notificationContainer} ${
           isNotificationOpen ? "show" : "hide"
         }`}
+        data-testid="notification-container"
       >
-        {isMobile && (
-          <img
-            src={CloseIconBlack}
-            alt="close icon"
-            className={`ml-auto ${styles.closeIcon}`}
-            role="presentation"
-            onClick={() => setIsNotificationOpen(false)}
-          />
+        {notificationList?.length > 0 && (
+          <div className={styles.markAsReadBtnContainer}>
+            <button
+              className={buttonClassName}
+              onClick={handleMarkAsReadButton}
+              disabled={allNotificationsSeen}
+            >
+              Mark as read
+            </button>
+          </div>
         )}
-        {notificationList?.length > 0 ? (
-          notificationList.map((item) => (
-            <Link reloadDocument to={item.linkTo} key={item.id}>
-              <div
-                className={`flex-col ${styles.messageContainer} ${
-                  item.unseen ? styles.unseen : styles.seen
-                }`}
-                role="presentation"
-                onClick={() => handleNotificationRead(item.id)}
-              >
-                <Text size="b2" fontWeight="medium">
-                  {item.message}
-                </Text>
-                <Text size="b3" fontWeight="regular">
-                  {item.date}
-                </Text>
-              </div>
-            </Link>
-          ))
-        ) : (
-          <Text size="b2" fontWeight="regular" className="flex-center">
-            No Notifications
-          </Text>
-        )}
+        <div
+          data-testid="notifications-scroll"
+          className={`${styles.notificationsScroll} ${
+            isNotificationOpen ? "show" : "hide"
+          }`}
+        >
+          {isMobile && (
+            <img
+              src={CloseIconBlack}
+              alt="close icon"
+              className={`ml-auto ${styles.closeIcon}`}
+              role="presentation"
+              onClick={() => setIsNotificationOpen(false)}
+            />
+          )}
+          {notificationList?.length > 0 ? (
+            <>
+              {notificationList.map((item) => (
+                <Link reloadDocument to={item.linkTo} key={item.id}>
+                  <div
+                    className={`flex-col ${styles.messageContainer} ${
+                      item.unseen ? styles.unseen : styles.seen
+                    }`}
+                    role="presentation"
+                    onClick={() => handleNotificationRead(item.id)}
+                  >
+                    <Text size="b2" fontWeight="medium">
+                      {item.message}
+                    </Text>
+                    <Text size="b3" fontWeight="regular">
+                      {item.date}
+                    </Text>
+                  </div>
+                </Link>
+              ))}
+            </>
+          ) : (
+            <Text as="div" size="b2" fontWeight="regular" className="flex-center m10">
+              No Notifications
+            </Text>
+          )}
+        </div>
       </div>
     </div>
   );

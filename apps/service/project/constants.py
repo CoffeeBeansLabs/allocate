@@ -121,6 +121,7 @@ class ErrorMessages:
     START_DATE_GREATER_THAN_END_DATE = 'Start date cannot be greater than end date.'
     PROJECT_IS_CLOSED = 'You can not allocate talent to closed project.'
     TALENT_IS_ALREADY_ALLOCATED_TO_ROLE = 'Talent is already allocated to the given role.'
+    TALENT_IS_ALREADY_ALLOCATED_DURING_THE_PERIOD = 'Talent is already allocated during the given period.'
     OTHER_TALENT_IS_ALREADY_ALLOCATED_IN_GIVEN_DATE_RANGE = 'Other talent is already allocated in give date range.'
     ALLOCATION_IS_BEYOND_POSITION_DATE_RANGE = 'Allocation date is beyond the position date range'
     POSITION_DATE_IS_BEYOND_ALLOCATION_DATE_RANGE = 'Position date is beyond the allocation date range'
